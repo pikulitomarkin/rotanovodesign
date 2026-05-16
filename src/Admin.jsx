@@ -361,36 +361,34 @@ export default function Admin() {
           <div style={S.title}>🏢 Nosso Espaço</div>
           <label style={S.label}>Subtítulo (use &lt;b&gt; para negrito)</label>
           <textarea style={{ ...S.textarea, minHeight: '60px' }} value={form.space?.subtitle || ''} onChange={e => update('space.subtitle', e.target.value)} />
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '16px' }}>
-            <ImageField label="Foto 1" value={form.space?.images?.[0]} onChange={v => {
-              const next = JSON.parse(JSON.stringify(form));
-              if(!next.space) next.space = {images: []};
-              if(!next.space.images) next.space.images = [];
-              next.space.images[0] = v;
-              setForm(next); setStatus('idle');
-            }} />
-            <ImageField label="Foto 2" value={form.space?.images?.[1]} onChange={v => {
-              const next = JSON.parse(JSON.stringify(form));
-              if(!next.space) next.space = {images: []};
-              if(!next.space.images) next.space.images = [];
-              next.space.images[1] = v;
-              setForm(next); setStatus('idle');
-            }} />
-            <ImageField label="Foto 3" value={form.space?.images?.[2]} onChange={v => {
-              const next = JSON.parse(JSON.stringify(form));
-              if(!next.space) next.space = {images: []};
-              if(!next.space.images) next.space.images = [];
-              next.space.images[2] = v;
-              setForm(next); setStatus('idle');
-            }} />
-            <ImageField label="Foto 4" value={form.space?.images?.[3]} onChange={v => {
-              const next = JSON.parse(JSON.stringify(form));
-              if(!next.space) next.space = {images: []};
-              if(!next.space.images) next.space.images = [];
-              next.space.images[3] = v;
-              setForm(next); setStatus('idle');
-            }} />
+          <label style={S.label}>Imagens do Espaço (Scroll Automático)</label>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+            {(form.space?.images || []).map((img, i) => (
+              <div key={i} style={{ position: 'relative' }}>
+                <ImageField label={`Foto ${i + 1}`} value={img} onChange={v => {
+                  const next = JSON.parse(JSON.stringify(form));
+                  if (!next.space) next.space = { images: [] };
+                  if (!next.space.images) next.space.images = [];
+                  next.space.images[i] = v;
+                  setForm(next); setStatus('idle');
+                }} />
+                <button style={{ position: 'absolute', top: 0, right: 0, background: '#e53935', color: '#fff', border: 'none', borderRadius: '4px', padding: '2px 8px', cursor: 'pointer', zIndex: 10 }} onClick={() => {
+                  const next = JSON.parse(JSON.stringify(form));
+                  if (!next.space) next.space = { images: [] };
+                  if (!next.space.images) next.space.images = [];
+                  next.space.images.splice(i, 1);
+                  setForm(next); setStatus('idle');
+                }}>X</button>
+              </div>
+            ))}
           </div>
+          <button style={{ background: '#222', color: '#fff', border: '1px dashed #555', padding: '8px', width: '100%', borderRadius: '4px', cursor: 'pointer', marginBottom: '16px' }} onClick={() => {
+            const next = JSON.parse(JSON.stringify(form));
+            if (!next.space) next.space = { images: [] };
+            if (!next.space.images) next.space.images = [];
+            next.space.images.push("");
+            setForm(next); setStatus('idle');
+          }}>+ Adicionar Foto ao Espaço</button>
         </div>
 
         {/* Piercing */}

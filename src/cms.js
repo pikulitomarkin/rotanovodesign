@@ -62,7 +62,7 @@ export const DEFAULT_DATA = {
   },
   space: {
     subtitle: "Entre no espaço onde a arte ganha vida na pele. <b>Um estúdio feito para <span style='color: var(--accent)'>conforto, criatividade e tatuagens inesquecíveis.</span></b>",
-    images: [null, null, null, null],
+    images: [null, null, null, null, null],
   },
   piercing: {
     title: "Para nós, <span style='color: var(--accent)'>Piercing</span> é uma forma de comunicar liberdade",

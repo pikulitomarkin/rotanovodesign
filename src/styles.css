@@ -1025,6 +1025,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   align-self: start;
   font-weight: 900;
   display: inline-block;
+  width: fit-content;
+  max-width: 250px;
+  text-align: center;
 }
 .faq-head .btn-ghost:hover { background: var(--accent-hot); }
 
@@ -1148,31 +1151,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   max-width: 600px;
   margin: 0 auto 40px;
   line-height: 1.5;
-}
-.space-gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-.space-gallery img {
-  width: 100%;
-  aspect-ratio: 3/4;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.space-gallery img:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-@media (max-width: 768px) {
-  .space-gallery { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .space-gallery { grid-template-columns: 1fr; }
 }
 
 /* ============================================

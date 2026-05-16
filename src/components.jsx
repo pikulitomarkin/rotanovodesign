@@ -579,17 +579,64 @@ export function StudioSpace() {
   const cms = useCMSData()
   const space = cms.space
   if (!space) return null
+  const validImages = space.images?.filter(Boolean) || []
+  // Duplicamos a lista para o efeito de loop infinito (-50%)
+  const doubledImages = [...validImages, ...validImages]
+
   return (
     <section className="studio-space">
-      <div className="container">
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <h2 className="section-title text-center with-lines">Nosso espaço</h2>
         <p className="space-subtitle text-center" dangerouslySetInnerHTML={{ __html: space.subtitle }} />
-        <div className="space-gallery">
-          {space.images?.filter(Boolean).map((img, i) => (
-            <img key={i} src={img} alt={`Espaço ${i}`} />
-          ))}
-        </div>
       </div>
+      
+      {validImages.length > 0 && (
+        <div className="space-marquee-container" style={{ 
+          marginTop: '60px',
+          width: '100%', 
+          overflow: 'hidden', 
+          position: 'relative',
+          display: 'flex',
+          maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+        }}>
+          <div className="space-marquee-track" style={{
+            display: 'flex',
+            animation: 'marquee-left 40s linear infinite',
+            width: 'max-content'
+          }}>
+            {doubledImages.map((img, i) => (
+              <div key={i} style={{
+                width: '320px',
+                height: '420px',
+                flexShrink: 0,
+                marginRight: '24px',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                opacity: 0.6,
+                transition: 'all 0.6s ease',
+                filter: 'grayscale(40%) contrast(1.1) blur(1px)',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={e => { 
+                e.currentTarget.style.opacity = 1; 
+                e.currentTarget.style.filter = 'grayscale(0%) contrast(1.1) blur(0px)';
+                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.parentElement.style.animationPlayState = 'paused';
+              }}
+              onMouseLeave={e => { 
+                e.currentTarget.style.opacity = 0.6; 
+                e.currentTarget.style.filter = 'grayscale(40%) contrast(1.1) blur(1px)';
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.parentElement.style.animationPlayState = 'running';
+              }}
+              >
+                <img src={img} alt={`Espaço ${i}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   )
 }
