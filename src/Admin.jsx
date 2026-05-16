@@ -316,6 +316,7 @@ export default function Admin() {
         {/* Banner laranja */}
         <div style={S.section}>
           <div style={S.title}>🟠 Banner Laranja</div>
+          <ImageField label="Imagem do Banner (+900 Avaliações)" value={form.banner?.image} onChange={v => update('banner.image', v)} />
           <label style={S.label}>Título em destaque (ex: TATTOO)</label>
           <input style={S.input} value={form.banner?.title || ''} onChange={e => update('banner.title', e.target.value)} />
           <label style={S.label}>Texto do banner</label>

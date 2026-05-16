@@ -68,6 +68,7 @@ export const DEFAULT_DATA = {
     title: "TATTOO",
     text: "Sua pele conta sua história! Vem marcar a próxima com a gente",
     ctaText: "Agende seu horário!",
+    image: "/images/depoimentos 900+ gmn.webp",
   },
   faq: [
     { q: "Onde fica o estúdio?", a: "Av. Nossa Sra. de Copacabana, 828 — Copacabana, Rio de Janeiro - RJ, CEP 22050-001. A duas quadras do metrô Cardeal Arcoverde." },
