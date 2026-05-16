@@ -105,10 +105,7 @@ export function Hero() {
     <section className="hero" id="top">
       <div className="container hero-grid">
         <div className="hero-left">
-          <div className="hero-eyebrow">
-            <img src="/images/Group 1171275604.webp" alt="Equipe" style={{ height: '36px', width: 'auto' }} />
-            <img src="/images/JÁ ATENDEMOS MAIS DE.webp" alt="Já atendemos mais de 3500 tatuagens" style={{ height: '36px', width: 'auto' }} />
-          </div>
+
           <div className="hero-title" style={{ marginBottom: '24px' }}>
             <img src="/images/Rota headline.webp" alt="Rota da Tattoo" style={{ maxWidth: '100%', height: 'auto' }} />
           </div>
@@ -420,25 +417,15 @@ export function Reviews() {
 export function Banner() {
   const cms = useCMSData()
   const b = cms.banner
-  const s = cms.settings
-  const waLink = `https://wa.me/${(s.whatsapp || '5521999999999').replace(/\D/g, '')}`
   return (
     <section className="banner">
       <div className="container banner-grid">
         <div className="banner-left">
-          <div className="display" style={{ fontSize: 'clamp(40px, 6vw, 64px)', marginBottom: '16px' }}>{b.title}</div>
-          <p style={{ fontSize: 'clamp(20px, 2.5vw, 32px)', fontWeight: 'bold', lineHeight: 1.3, marginBottom: '36px' }}>{b.text}</p>
-          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-cta" style={{ maxWidth: '360px', padding: '18px 32px', fontSize: '18px' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: '8px' }}>
-              <path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.9L4 20l4.22-1.1a7.93 7.93 0 003.83.98h.01a7.94 7.94 0 005.55-13.55zm-5.54 12.2a6.58 6.58 0 01-3.36-.92l-.24-.14-2.5.65.67-2.44-.16-.25a6.6 6.6 0 0110.27-8.1 6.55 6.55 0 011.93 4.67 6.6 6.6 0 01-6.6 6.53zm3.62-4.94c-.2-.1-1.18-.58-1.36-.64-.18-.07-.31-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.6-.53-1-1.18-1.12-1.38-.11-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34l-.39-.01a.74.74 0 00-.54.25c-.18.2-.7.69-.7 1.67 0 .98.72 1.93.82 2.06.1.13 1.42 2.17 3.44 3.05.48.2.85.32 1.14.42.48.15.92.13 1.26.08.39-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.94-.05-.09-.18-.13-.38-.23z" />
-            </svg>
-            {b.ctaText || 'Agende seu horário!'}
-          </a>
+          <p dangerouslySetInnerHTML={{ __html: b.text }} />
         </div>
-        <div className="banner-mid" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src={b.image} alt={b.title} style={{ maxWidth: '280px' }} />
+        <div className="banner-right">
+          <img src={b.image} alt="+900 Avaliações" style={{ maxWidth: '400px', width: '100%', height: 'auto' }} />
         </div>
-        <div className="banner-right"></div>
       </div>
     </section>
   )

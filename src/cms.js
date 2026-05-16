@@ -65,9 +65,8 @@ export const DEFAULT_DATA = {
     { name: "Sophie L.", initials: "SL", time: "Há 3 semanas", text: "Came here as a tourist and had an amazing experience! The team was welcoming, spoke English, and the tattoo came out perfectly. 5 stars without doubt!" },
   ],
   banner: {
-    title: "TATTOO",
-    text: "Sua pele conta sua história! Vem marcar a próxima com a gente",
-    ctaText: "Agende seu horário!",
+    title: "",
+    text: "<b>Sua pele conta sua<br/>história!</b> Vem marcar a<br/>próxima com a gente",
     image: "/images/depoimentos 900+ gmn.webp",
   },
   faq: [

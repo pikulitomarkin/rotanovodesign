@@ -317,12 +317,8 @@ export default function Admin() {
         <div style={S.section}>
           <div style={S.title}>🟠 Banner Laranja</div>
           <ImageField label="Imagem do Banner (+900 Avaliações)" value={form.banner?.image} onChange={v => update('banner.image', v)} />
-          <label style={S.label}>Título em destaque (ex: TATTOO)</label>
-          <input style={S.input} value={form.banner?.title || ''} onChange={e => update('banner.title', e.target.value)} />
-          <label style={S.label}>Texto do banner</label>
-          <textarea style={S.textarea} value={form.banner?.text || ''} onChange={e => update('banner.text', e.target.value)} />
-          <label style={S.label}>Texto do botão</label>
-          <input style={S.input} value={form.banner?.ctaText || ''} onChange={e => update('banner.ctaText', e.target.value)} />
+          <label style={S.label}>Texto do banner (use &lt;b&gt; para negrito e &lt;br/&gt; para quebra de linha)</label>
+          <textarea style={{ ...S.textarea, minHeight: '80px' }} value={form.banner?.text || ''} onChange={e => update('banner.text', e.target.value)} />
         </div>
 
         {/* FAQ */}
