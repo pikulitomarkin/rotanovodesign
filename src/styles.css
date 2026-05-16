@@ -397,18 +397,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border: 1px solid var(--border);
   box-shadow: var(--glass-shadow);
 }
-.diff-image::after {
-  content: "002";
-  position: absolute;
-  bottom: 18px;
-  left: 24px;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 96px;
-  font-weight: 900;
-  color: rgba(255,255,255,0.18);
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
+
 .diff-content h3 {
   font-size: clamp(22px, 2.4vw, 36px);
   line-height: 1.1;
