@@ -321,6 +321,62 @@ export default function Admin() {
           <textarea style={{ ...S.textarea, minHeight: '80px' }} value={form.banner?.text || ''} onChange={e => update('banner.text', e.target.value)} />
         </div>
 
+        {/* Nosso Espaço */}
+        <div style={S.section}>
+          <div style={S.title}>🏢 Nosso Espaço</div>
+          <label style={S.label}>Subtítulo (use &lt;b&gt; para negrito)</label>
+          <textarea style={{ ...S.textarea, minHeight: '60px' }} value={form.space?.subtitle || ''} onChange={e => update('space.subtitle', e.target.value)} />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '16px' }}>
+            <ImageField label="Foto 1" value={form.space?.images?.[0]} onChange={v => {
+              const next = JSON.parse(JSON.stringify(form));
+              if(!next.space) next.space = {images: []};
+              if(!next.space.images) next.space.images = [];
+              next.space.images[0] = v;
+              setForm(next); setStatus('idle');
+            }} />
+            <ImageField label="Foto 2" value={form.space?.images?.[1]} onChange={v => {
+              const next = JSON.parse(JSON.stringify(form));
+              if(!next.space) next.space = {images: []};
+              if(!next.space.images) next.space.images = [];
+              next.space.images[1] = v;
+              setForm(next); setStatus('idle');
+            }} />
+            <ImageField label="Foto 3" value={form.space?.images?.[2]} onChange={v => {
+              const next = JSON.parse(JSON.stringify(form));
+              if(!next.space) next.space = {images: []};
+              if(!next.space.images) next.space.images = [];
+              next.space.images[2] = v;
+              setForm(next); setStatus('idle');
+            }} />
+            <ImageField label="Foto 4" value={form.space?.images?.[3]} onChange={v => {
+              const next = JSON.parse(JSON.stringify(form));
+              if(!next.space) next.space = {images: []};
+              if(!next.space.images) next.space.images = [];
+              next.space.images[3] = v;
+              setForm(next); setStatus('idle');
+            }} />
+          </div>
+        </div>
+
+        {/* Piercing */}
+        <div style={S.section}>
+          <div style={S.title}>💎 Piercing</div>
+          <label style={S.label}>Título (use &lt;span style="color: var(--accent)"&gt; para destacar)</label>
+          <input style={S.input} value={form.piercing?.title || ''} onChange={e => update('piercing.title', e.target.value)} />
+          <label style={S.label}>Texto principal</label>
+          <textarea style={{ ...S.textarea, minHeight: '80px' }} value={form.piercing?.text || ''} onChange={e => update('piercing.text', e.target.value)} />
+          <label style={S.label}>Garantia / Selo</label>
+          <input style={S.input} value={form.piercing?.guarantee || ''} onChange={e => update('piercing.guarantee', e.target.value)} />
+          
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '16px' }}>
+            <div style={{ gridColumn: 'span 2' }}>
+              <ImageField label="Imagem Grande (Esquerda)" value={form.piercing?.img1} onChange={v => update('piercing.img1', v)} />
+            </div>
+            <ImageField label="Imagem Menor 1 (Direita topo)" value={form.piercing?.img2} onChange={v => update('piercing.img2', v)} />
+            <ImageField label="Imagem Menor 2 (Direita base)" value={form.piercing?.img3} onChange={v => update('piercing.img3', v)} />
+          </div>
+        </div>
+
         {/* FAQ */}
         <div style={S.section}>
           <div style={S.title}>❓ Perguntas Frequentes (FAQ)</div>

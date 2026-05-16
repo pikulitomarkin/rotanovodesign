@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Header, Hero, StylesStrip, About, Differentials,
-  Gallery, Testimonials, Team, MapSection, Reviews,
+  Gallery, StudioSpace, Piercing, Testimonials, Team, MapSection, Reviews,
   Banner, FAQ, Footer, WhatsAppFloat
 } from './components.jsx'
 
@@ -19,6 +19,8 @@ export default function App() {
         <About />
         <Differentials />
         <Gallery />
+        <StudioSpace />
+        <Piercing />
         <Testimonials />
         <Team />
         <MapSection />

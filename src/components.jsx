@@ -485,3 +485,60 @@ export function WhatsAppFloat() {
     </a>
   )
 }
+
+// ===== Studio Space =====
+export function StudioSpace() {
+  const cms = useCMSData()
+  const space = cms.space
+  if (!space) return null
+  return (
+    <section className="studio-space">
+      <div className="container">
+        <h2 className="section-title text-center with-lines">Nosso espaço</h2>
+        <p className="space-subtitle text-center" dangerouslySetInnerHTML={{ __html: space.subtitle }} />
+        <div className="space-gallery">
+          {space.images?.filter(Boolean).map((img, i) => (
+            <img key={i} src={img} alt={`Espaço ${i}`} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ===== Piercing =====
+export function Piercing() {
+  const cms = useCMSData()
+  const s = cms.settings
+  const p = cms.piercing
+  if (!p) return null
+  const waLink = `https://wa.me/${(s.whatsapp || '5521999999999').replace(/\D/g, '')}`
+  return (
+    <section className="piercing-section">
+      <div className="container piercing-grid">
+        <div className="piercing-content">
+          <h2 dangerouslySetInnerHTML={{ __html: p.title }} />
+          <p dangerouslySetInnerHTML={{ __html: p.text }} />
+          
+          <div className="guarantee">
+            <div className="guarantee-icon">+</div>
+            <span>{p.guarantee}</span>
+          </div>
+
+          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-cta" style={{ maxWidth: '300px' }}>
+            Agende seu horário!
+          </a>
+        </div>
+        <div className="piercing-images">
+          <div className="p-img-left">
+            {p.img1 && <img src={p.img1} alt="Piercing 1" />}
+          </div>
+          <div className="p-img-right">
+            {p.img2 && <img src={p.img2} alt="Piercing 2" />}
+            {p.img3 && <img src={p.img3} alt="Piercing 3" />}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

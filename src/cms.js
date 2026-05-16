@@ -50,6 +50,18 @@ export const DEFAULT_DATA = {
     col2: "Do moderno detalhado de linhas finas e minimalistas, do colorido vibrante ao preto mais intenso, aqui você encontra diversidade de estilos e a liberdade de escolher quem melhor representa a sua vibe.",
     col3: "Cada um deles possui um estilo próprio, técnica refinada e um olhar sensível para entender o que o cliente realmente quer expressar na pele! Mais do que desenhar, nossos artistas traduzem sentimentos.",
   },
+  space: {
+    subtitle: "Entre no espaço onde a arte ganha vida na pele. <b>Um estúdio feito para <span style='color: var(--accent)'>conforto, criatividade e tatuagens inesquecíveis.</span></b>",
+    images: [null, null, null, null],
+  },
+  piercing: {
+    title: "Para nós, <span style='color: var(--accent)'>Piercing</span> é uma forma de comunicar liberdade",
+    text: "Aqui, você encontra <span style='color: var(--accent)'>profissionais experientes</span>, <span style='color: var(--accent)'>ambiente seguro</span> e <span style='color: var(--accent)'>materiais 100% esterilizados</span>, para que cada detalhe da sua experiência seja leve, tranquila e cheia de estilo.",
+    guarantee: "Higiene & Biossegurança garantidas com a Rota!",
+    img1: null,
+    img2: null,
+    img3: null,
+  },
   reviews: [
     { name: "Lucas M.", initials: "LM", time: "Há 2 semanas", text: "Atendimento impecável e resultado incrível. A tatuagem ficou exatamente como eu imaginava. Equipe super atenciosa e ambiente muito limpo. Recomendo demais!" },
     { name: "Carla R.", initials: "CR", time: "Há 1 mês", text: "Melhor estúdio que já fui! O traço é perfeito e o cuidado com a higiene é de outro nível. Voltarei com certeza para fazer minha próxima." },
