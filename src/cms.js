@@ -25,7 +25,12 @@ export const DEFAULT_DATA = {
     paragraph: "Já são milhares de clientes atendidos ao redor do mundo, levando nossa arte para diferentes culturas e histórias. Nossa equipe reúne artistas especializados em diversos estilos, garantindo versatilidade e precisão em cada trabalho. Somos um estúdio consolidado em Copacabana, reconhecido pela consistência e pelo nível dos projetos realizados. Prezamos por um padrão elevado em cada detalhe, do primeiro contato ao resultado final na pele. Aqui, cada atendimento é pensado para oferecer uma experiência diferenciada.",
   },
   differentials: {
-    sideImage: "/images/IMG_0380 1.webp",
+    sideImages: [
+      "/images/IMG_0380 1.webp",
+      "/images/tattoo realismo.webp",
+      "/images/IMG_1152 1.webp",
+      "/images/tattoo fineline.webp"
+    ],
     items: [
       { q: "Contamos com mais de 900 Avaliações positivas", a: "Mais de 900 avaliações 5 estrelas no Google Meu Negócio, reflexo do nosso compromisso com a qualidade e a experiência do cliente." },
       { q: "Studio descomplicado e atendimento humanizado", a: "Da primeira mensagem ao último retoque, você é tratado como pessoa — não como número. Conversamos, ajustamos referências e respeitamos seu tempo." },

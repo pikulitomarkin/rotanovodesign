@@ -209,7 +209,31 @@ export default function Admin() {
         {/* Diferenciais */}
         <div style={S.section}>
           <div style={S.title}>🏆 Diferenciais</div>
-          <ImageField label="Imagem lateral esquerda" value={form.differentials.sideImage} onChange={v => update('differentials.sideImage', v)} />
+          <label style={S.label}>Imagens do Slideshow (Lateral esquerda)</label>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+            {(form.differentials.sideImages || (form.differentials.sideImage ? [form.differentials.sideImage] : [])).map((img, i) => (
+              <div key={i} style={{ position: 'relative' }}>
+                <ImageField label={`Imagem ${i + 1}`} value={img} onChange={v => {
+                  const next = JSON.parse(JSON.stringify(form));
+                  if (!next.differentials.sideImages) next.differentials.sideImages = next.differentials.sideImage ? [next.differentials.sideImage] : [];
+                  next.differentials.sideImages[i] = v;
+                  setForm(next); setStatus('idle');
+                }} />
+                <button style={{ position: 'absolute', top: 0, right: 0, background: '#e53935', color: '#fff', border: 'none', borderRadius: '4px', padding: '2px 8px', cursor: 'pointer', zIndex: 10 }} onClick={() => {
+                  const next = JSON.parse(JSON.stringify(form));
+                  if (!next.differentials.sideImages) next.differentials.sideImages = next.differentials.sideImage ? [next.differentials.sideImage] : [];
+                  next.differentials.sideImages.splice(i, 1);
+                  setForm(next); setStatus('idle');
+                }}>X</button>
+              </div>
+            ))}
+          </div>
+          <button style={{ background: '#222', color: '#fff', border: '1px dashed #555', padding: '8px', width: '100%', borderRadius: '4px', cursor: 'pointer', marginBottom: '16px' }} onClick={() => {
+            const next = JSON.parse(JSON.stringify(form));
+            if (!next.differentials.sideImages) next.differentials.sideImages = next.differentials.sideImage ? [next.differentials.sideImage] : [];
+            next.differentials.sideImages.push("");
+            setForm(next); setStatus('idle');
+          }}>+ Adicionar Imagem ao Slideshow</button>
           <hr style={S.divider} />
           <label style={S.label}>Itens do acordeon</label>
           {form.differentials.items.map((item, idx) => (

@@ -248,11 +248,37 @@ export function Differentials() {
   const cms = useCMSData()
   const items = cms.differentials.items
   const [openIdx, setOpenIdx] = React.useState(0)
+  const [imgIdx, setImgIdx] = React.useState(0)
+  const images = cms.differentials.sideImages || (cms.differentials.sideImage ? [cms.differentials.sideImage] : [])
+
+  React.useEffect(() => {
+    if (images.length <= 1) return;
+    const interval = setInterval(() => {
+      setImgIdx(prev => (prev + 1) % images.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [images.length])
+
   return (
     <section className="diff" id="estudio">
       <div className="container diff-grid">
-        <div className="diff-image">
-          <img src={cms.differentials.sideImage} alt="Tatuador em ação" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <div className="diff-image" style={{ position: 'relative', overflow: 'hidden' }}>
+          {images.map((src, idx) => (
+            <img 
+              key={idx} 
+              src={src} 
+              alt="Tatuador em ação" 
+              style={{ 
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover', 
+                position: 'absolute', 
+                inset: 0, 
+                opacity: idx === imgIdx ? 1 : 0, 
+                transition: 'opacity 1s ease-in-out' 
+              }} 
+            />
+          ))}
         </div>
         <div className="diff-content">
           <h3 style={{ marginBottom: '32px' }}>
