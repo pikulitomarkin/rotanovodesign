@@ -147,10 +147,10 @@ export function Hero() {
         <div className="hero-left">
 
           <div className="hero-title" style={{ marginBottom: '24px' }}>
-            <img src="/images/Rota headline.webp" alt="Rota da Tattoo" style={{ maxWidth: '100%', height: 'auto' }} />
+            <img src={h.titleImg || "/images/Rota headline.webp"} alt="Rota da Tattoo" style={{ maxWidth: '100%', height: 'auto' }} />
           </div>
           <div className="hero-sub" style={{ marginBottom: '24px' }}>
-            <img src="/images/subline rota.webp" alt="Tatuagem e Piercing Copacabana" style={{ maxWidth: '80%', height: 'auto' }} />
+            <img src={h.subImg || "/images/subline rota.webp"} alt="Tatuagem e Piercing Copacabana" style={{ maxWidth: '80%', height: 'auto' }} />
           </div>
           {h.bannerText && (
             <p style={{ color: '#fff', fontWeight: 700, fontSize: 'clamp(16px, 1.6vw, 22px)', lineHeight: 1.4, marginBottom: '28px', maxWidth: '420px' }}>{h.bannerText}</p>

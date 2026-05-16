@@ -176,6 +176,11 @@ export default function Admin() {
         {/* Hero */}
         <div style={S.section}>
           <div style={S.title}>🖼️ Seção Inicial (Hero)</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+            <ImageField label="Título (STUDIO ROTA...)" value={form.hero.titleImg || ''} onChange={v => update('hero.titleImg', v)} />
+            <ImageField label="Subtítulo (Sua pele...)" value={form.hero.subImg || ''} onChange={v => update('hero.subImg', v)} />
+          </div>
+          <hr style={S.divider} />
           <ImageField label="Imagem principal (lado direito)" value={form.hero.mainImage} onChange={v => update('hero.mainImage', v)} />
           <hr style={S.divider} />
           <label style={S.label}>Texto do banner</label>

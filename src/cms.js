@@ -10,6 +10,8 @@ export const DEFAULT_DATA = {
     ctaText: "Agende seu horário!",
   },
   hero: {
+    titleImg: "/images/Rota headline.webp",
+    subImg: "/images/subline rota.webp",
     mainImage: "/images/Rota imagem tattoo.webp",
     card1: "/images/IMG_0380 1.webp",
     card2: "/images/tattoo realismo.webp",
