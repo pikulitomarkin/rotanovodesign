@@ -1,22 +1,10 @@
 import React from 'react'
+import { useCMSData } from './cms'
 
 // ===== Logo (gothic-style RT monogram) =====
 export function Logo({ size = 56, color = "#fff" }) {
   return (
-    <svg width={size} height={size * 1.05} viewBox="0 0 100 105" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g fill={color}>
-        <path d="M8 18 L12 14 L18 16 L22 12 L26 16 L30 12 L34 16 L38 12 L42 16 L46 12 L50 16 L54 12 L58 16 L62 12 L66 16 L70 12 L74 16 L78 12 L82 16 L86 12 L90 16 L92 18 L92 22 L88 24 L92 26 L92 28" stroke={color} strokeWidth="0" />
-        <path d="M14 28 C14 26, 16 24, 18 24 L42 24 C50 24, 56 28, 56 36 C56 42, 52 46, 46 48 L60 78 C61 80, 60 82, 58 82 L52 82 C50 82, 48 81, 47 79 L36 56 L30 56 L30 78 C30 80, 28 82, 26 82 L18 82 C16 82, 14 80, 14 78 Z M30 36 L30 46 L38 46 C42 46, 44 44, 44 41 C44 38, 42 36, 38 36 Z" />
-        <path d="M44 22 L88 22 C90 22, 92 24, 92 26 L92 32 C92 34, 90 36, 88 36 L74 36 L74 78 C74 80, 72 82, 70 82 L62 82 C60 82, 58 80, 58 78 L58 36 L52 36 L48 26 Z" />
-        <path d="M20 82 L24 88 L28 82 Z" />
-        <path d="M62 82 L66 90 L70 82 Z" />
-        <path d="M14 28 L10 30 L14 34 Z" />
-        <path d="M92 28 L96 30 L92 34 Z" />
-        <circle cx="22" cy="20" r="1.6" />
-        <circle cx="78" cy="20" r="1.6" />
-        <circle cx="50" cy="14" r="2" />
-      </g>
-    </svg>
+    <img src="/images/EMBLEMA ROTA.webp" alt="Rota da Tattoo Logo" width={size} style={{ height: 'auto', display: 'block' }} />
   )
 }
 
@@ -108,38 +96,38 @@ export function Header() {
 
 // ===== Hero =====
 export function Hero() {
+  const cms = useCMSData()
+  const h = cms.hero
+  const s = cms.settings
+  const waLink = `https://wa.me/${(s.whatsapp || '5521999999999').replace(/\D/g, '')}`
+
   return (
     <section className="hero" id="top">
       <div className="container hero-grid">
         <div className="hero-left">
           <div className="hero-eyebrow">
-            <div className="avatars">
-              <div className="av av-1" />
-              <div className="av av-2" />
-              <div className="av av-3" />
-            </div>
-            <p>Mais de <strong>3500 Tatuagens</strong> já marcadas na pele.</p>
+            <img src="/images/Group 1171275604.webp" alt="Equipe" style={{ height: '36px', width: 'auto' }} />
+            <img src="/images/JÁ ATENDEMOS MAIS DE.webp" alt="Já atendemos mais de 3500 tatuagens" style={{ height: '36px', width: 'auto' }} />
           </div>
-
-          <h1 className="hero-title display">
-            <span className="word-studio">STUDIO</span>
-            <span className="word-rota">
-              <span className="accent">R</span>
-              <span className="stamp-o"><StampO /></span>
-              <span className="accent">TA</span>
-              <span> DA</span>
-            </span>
-            <span style={{ display: 'block' }}>TATTOO</span>
-          </h1>
-
-          <p className="hero-sub">Tatuagem e Piercing Copacabana</p>
-
-          <a href="#agendar" className="btn-cta">Agende seu horário!</a>
+          <div className="hero-title" style={{ marginBottom: '24px' }}>
+            <img src="/images/Rota headline.webp" alt="Rota da Tattoo" style={{ maxWidth: '100%', height: 'auto' }} />
+          </div>
+          <div className="hero-sub" style={{ marginBottom: '24px' }}>
+            <img src="/images/subline rota.webp" alt="Tatuagem e Piercing Copacabana" style={{ maxWidth: '80%', height: 'auto' }} />
+          </div>
+          {h.bannerText && (
+            <p style={{ color: '#fff', fontWeight: 700, fontSize: 'clamp(16px, 1.6vw, 22px)', lineHeight: 1.4, marginBottom: '28px', maxWidth: '420px' }}>{h.bannerText}</p>
+          )}
+          <a href={waLink} className="btn-cta" target="_blank" rel="noopener noreferrer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: '8px' }}>
+              <path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.9L4 20l4.22-1.1a7.93 7.93 0 003.83.98h.01a7.94 7.94 0 005.55-13.55zm-5.54 12.2a6.58 6.58 0 01-3.36-.92l-.24-.14-2.5.65.67-2.44-.16-.25a6.6 6.6 0 0110.27-8.1 6.55 6.55 0 011.93 4.67 6.6 6.6 0 01-6.6 6.53zm3.62-4.94c-.2-.1-1.18-.58-1.36-.64-.18-.07-.31-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.6-.53-1-1.18-1.12-1.38-.11-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34l-.39-.01a.74.74 0 00-.54.25c-.18.2-.7.69-.7 1.67 0 .98.72 1.93.82 2.06.1.13 1.42 2.17 3.44 3.05.48.2.85.32 1.14.42.48.15.92.13 1.26.08.39-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.94-.05-.09-.18-.13-.38-.23z" />
+            </svg>
+            {s.ctaText || 'Agende seu horário!'}
+          </a>
         </div>
 
         <div className="hero-image">
-          <div className="image-slot-ph" />
-          <CopacabanaSilhouette />
+          <img src={h.mainImage} alt="Tattoo Artist" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
           <div className="hero-pin">
             <div className="pin-ico">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -150,6 +138,14 @@ export function Hero() {
               Av. Nossa Sra. de Copacabana, 828.<br />
               Copacabana, Rio de Janeiro - RJ, 22050-001
             </div>
+          </div>
+          <div className="hero-cards">
+            {[{src: h.card1, label: '001'}, {src: h.card2, label: '002'}, {src: h.card3, label: '003'}].map(({src, label}) => (
+              <div className="h-card" key={label}>
+                <span className="h-card-num">{label}</span>
+                {src && <img src={src} alt={label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -175,6 +171,7 @@ export function StylesStrip() {
 
 // ===== About / Referência =====
 export function About() {
+  const cms = useCMSData()
   return (
     <section className="about" id="sobre">
       <div className="container about-grid">
@@ -182,19 +179,11 @@ export function About() {
           <Logo size={180} />
         </div>
         <div className="about-headline">
-          <h2 className="display">
-            SOMOS<br />
-            REFERÊNCIA <span className="accent">EM</span><br />
-            COPACABANA/RJ
+          <h2>
+            <img src="/images/SOMOS REFERÊNCIA.webp" alt="SOMOS REFERÊNCIA EM COPACABANA/RJ" style={{ maxWidth: '100%', height: 'auto' }} />
           </h2>
-          <p>
-            Já são milhares de clientes atendidos ao redor do mundo, levando nossa arte
-            para diferentes culturas e histórias. Nossa equipe reúne artistas especializados
-            em diversos estilos, garantindo versatilidade e precisão em cada trabalho.
-            Somos um estúdio consolidado em Copacabana, reconhecido pela consistência
-            e pelo nível dos projetos realizados. Prezamos por um padrão elevado em cada
-            detalhe, do primeiro contato ao resultado final na pele. Aqui, cada atendimento é
-            pensado para oferecer uma experiência diferenciada.
+          <p style={{ color: 'var(--text-dim)', fontSize: '16px', lineHeight: 1.7, maxWidth: '60ch' }}>
+            {cms.about.paragraph}
           </p>
         </div>
       </div>
@@ -204,22 +193,21 @@ export function About() {
 
 // ===== Differentials with Accordion =====
 export function Differentials() {
-  const items = [
-    { q: "Contamos com mais de 900 Avaliações positivas", a: "Mais de 900 avaliações 5 estrelas no Google Meu Negócio, reflexo do nosso compromisso com a qualidade e a experiência do cliente." },
-    { q: "Studio descomplicado e atendimento humanizado", a: "Da primeira mensagem ao último retoque, você é tratado como pessoa — não como número. Conversamos, ajustamos referências e respeitamos seu tempo." },
-    { q: "Cuidados do processo de criação até o de cicatrização", a: "Desenho exclusivo, materiais descartáveis, biossegurança rigorosa e acompanhamento pós-tattoo até a pele estar 100% cicatrizada." },
-    { q: "Estúdio com licença sanitária e equipe certificada", a: "Operamos com alvará da vigilância sanitária e toda a equipe possui certificação em biossegurança. Sua saúde e segurança são prioridade absoluta." },
-    { q: "Localização premium em Copacabana", a: "Av. Nossa Sra. de Copacabana, 828 — fácil acesso, próximo ao metrô e à orla. Ambiente climatizado e confortável." }
-  ]
+  const cms = useCMSData()
+  const items = cms.differentials.items
   const [openIdx, setOpenIdx] = React.useState(0)
   return (
     <section className="diff" id="estudio">
       <div className="container diff-grid">
-        <div className="diff-image" aria-label="Foto: tatuador em ação (placeholder)" />
+        <div className="diff-image">
+          <img src={cms.differentials.sideImage} alt="Tatuador em ação" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
         <div className="diff-content">
-          <h3>
+          <h3 style={{ marginBottom: '32px' }}>
             A <strong>Rota da Tattoo</strong> é diferenciada pelo
-            <span className="display-italic">AMBIENTE ACOLHEDOR</span>
+            <div style={{ marginTop: '12px' }}>
+              <img src="/images/AMBIENTE ACOLHEDOR.webp" alt="AMBIENTE ACOLHEDOR" style={{ maxWidth: '100%', height: 'auto' }} />
+            </div>
           </h3>
           <div className="accordion">
             {items.map((it, i) => (
@@ -240,42 +228,50 @@ export function Differentials() {
 
 // ===== Gallery / Estilos =====
 export function Gallery() {
+  const cms = useCMSData()
+  const g = cms.gallery
   const blocks = [
-    { eyebrow: "TATTOO", title: "BLACKWORK", tiles: ["ph-skin-1", "ph-skin-2", "ph-skin-3"] },
-    { eyebrow: "TATTOO", title: "REALISMO", tiles: ["ph-skin-4", "ph-skin-5", "ph-skin-6"] },
-    { eyebrow: "ORNAMENTAL", title: "GEOMÉTRICO", tiles: ["ph-skin-7", "ph-skin-8", "ph-skin-9"] },
-    { eyebrow: "TATTOO", title: "FINE LINE", tiles: ["ph-skin-2", "ph-skin-4", "ph-skin-7"] },
-    { eyebrow: "TATTOO", title: "OLD SCHOOL", tiles: ["ph-skin-5", "ph-skin-1", "ph-skin-8"] },
-    { eyebrow: "TATTOO", title: "POLINÉSIO", tiles: ["ph-skin-3", "ph-skin-6", "ph-skin-9"] },
+    { eyebrow: "TATTOO",     title: "BLACKWORK",  key: "blackwork",  labelImg: "/images/tattoo blackwork.webp" },
+    { eyebrow: "TATTOO",     title: "REALISMO",   key: "realismo",   labelImg: "/images/tattoo realismo.webp" },
+    { eyebrow: "ORNAMENTAL", title: "GEOMÉTRICO", key: "geometrico", labelImg: "/images/ornamental geométrico.webp" },
+    { eyebrow: "TATTOO",     title: "FINE LINE",  key: "fineline",   labelImg: "/images/tattoo fineline.webp" },
+    { eyebrow: "TATTOO",     title: "OLD SCHOOL", key: "oldschool",  labelImg: null },
+    { eyebrow: "TATTOO",     title: "POLINÉSIO",  key: "polinesio",  labelImg: null },
   ]
   return (
     <section className="gallery" id="tattoos">
       <div className="container">
         <div className="gallery-header">
-          <p>ESTILOS DE <span className="accent">TATTOO</span></p>
+          <img src="/images/ESTILOS DE TATTOO.webp" alt="ESTILOS DE TATTOO" style={{ margin: '0 auto 12px', maxWidth: '300px' }} />
           <p style={{ fontSize: '11px', letterSpacing: '0.4em' }}>CONTAMOS COM VÁRIOS ESTILOS ÚNICOS</p>
         </div>
-
-        <div className="featured-trio">
-          <div className="tile ph-skin-1" />
-          <div className="tile ph-skin-4" />
-          <div className="tile ph-skin-7" />
+        <div className="featured-trio" style={{ display: 'block', marginBottom: '80px', textAlign: 'center' }}>
+          <img src="/images/CARD DE TATTOOS.webp" alt="Tattoos em destaque" style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }} />
         </div>
-
-        {blocks.map((b, i) => (
-          <div className="style-block" key={i}>
-            <div className="style-label">
-              <Logo size={32} />
-              <div className="text">
-                <small>{b.eyebrow}</small>
-                <strong>{b.title}</strong>
+        {blocks.map((b) => {
+          const imgs = g[b.key] || [null, null, null]
+          return (
+            <div className="style-block" key={b.key}>
+              <div className="style-label" style={{ marginBottom: '24px' }}>
+                {b.labelImg ? (
+                  <img src={b.labelImg} alt={b.title} style={{ maxWidth: '280px' }} />
+                ) : (
+                  <>
+                    <Logo size={32} />
+                    <div className="text"><small>{b.eyebrow}</small><strong>{b.title}</strong></div>
+                  </>
+                )}
+              </div>
+              <div className="style-grid">
+                {[0,1,2].map(j => (
+                  <div key={j} className={`tile${!imgs[j] ? ' ph-skin-' + (((j + blocks.indexOf(b)) % 9) + 1) : ''}`}
+                    style={imgs[j] ? { backgroundImage: `url(${imgs[j]})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="style-grid">
-              {b.tiles.map((t, j) => <div key={j} className={`tile ${t}`} />)}
-            </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </section>
   )
@@ -283,6 +279,8 @@ export function Gallery() {
 
 // ===== Testimonials =====
 export function Testimonials() {
+  const cms = useCMSData()
+  const videos = cms.testimonials?.videos || []
   return (
     <section className="testimonials">
       <div className="bg-mark" />
@@ -295,25 +293,24 @@ export function Testimonials() {
           <div className="flag" style={{ background: 'linear-gradient(135deg, #012169 33%, #ffffff 33%, #ffffff 66%, #c8102e 66%)' }} />
           <div className="flag" style={{ background: 'linear-gradient(180deg, #aa151b 33%, #f1bf00 33%, #f1bf00 66%, #aa151b 66%)' }} />
         </div>
-        <h3>
-          <span className="accent">Depoimentos</span> dos Brasileiros até os Gringos<br />
-          em volta de todo o mundo!
-        </h3>
-        <div className="video-row">
-          {[{ name: "Josh", role: "Cliente" }, { name: "Franco", role: "Cliente" }].map((v, i) => (
-            <div className="video-card" key={i}>
-              <div className="vc-bg" />
+        <div style={{ marginBottom: '36px', textAlign: 'center' }}>
+          <img src="/images/TURISTAS.webp" alt="Depoimentos" style={{ maxWidth: '100%', height: 'auto' }} />
+        </div>
+        <div className="video-row" style={{
+          overflowX: videos.length > 3 ? 'auto' : 'visible',
+          flexWrap: videos.length > 3 ? 'nowrap' : 'wrap',
+          justifyContent: videos.length <= 3 ? 'center' : 'flex-start',
+          paddingBottom: '8px',
+        }}>
+          {videos.map((v, i) => (
+            <a key={i} href={v.url || '#'} target="_blank" rel="noreferrer" className="video-card" style={{ textDecoration: 'none', flexShrink: 0 }}>
+              {v.thumb && <img src={v.thumb} className="vc-bg" alt="Thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />}
               <div className="vc-tag">
                 <div className="av" />
-                <div className="label">
-                  Depoimento {v.name}
-                  <small>{v.role}</small>
-                </div>
+                <div className="label">{v.name || `Depoimento ${i + 1}`}<small>Cliente</small></div>
               </div>
-              <div className="play">
-                <svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-              </div>
-            </div>
+              <div className="play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+            </a>
           ))}
         </div>
       </div>
@@ -323,28 +320,20 @@ export function Testimonials() {
 
 // ===== Team =====
 export function Team() {
+  const cms = useCMSData()
+  const t = cms.team
   return (
     <section className="team">
       <div className="container team-grid">
         <div className="team-lead">
-          <p>
-            Juntos os profissionais<br />
-            encontram <span className="accent">mais de 10 anos de</span><br />
-            <span className="accent">experiência</span> no ramo.
-          </p>
-          <div className="team-faces">
-            <div className="face" />
-            <div className="face" />
-            <div className="face" />
+          <p>{t.leadText}</p>
+          <div className="team-faces" style={{ display: 'block' }}>
+            <img src={t.teamImage} alt="Tatuadores" style={{ maxWidth: '100%', height: 'auto' }} />
           </div>
         </div>
         <div className="team-copy">
-          <p>
-            Do moderno detalhado de linhas finas e minimalistas, do colorido vibrante ao preto mais intenso, aqui você encontra <span className="accent">diversidade de estilos e a liberdade de escolher quem melhor representa a sua vibe.</span>
-          </p>
-          <p>
-            Cada um deles possui um estilo próprio, técnica refinada e um olhar sensível para entender o que o cliente realmente quer expressar na pele! Mais do que desenhar, nossos artistas traduzem sentimentos.
-          </p>
+          <p>{t.col2}</p>
+          <p>{t.col3}</p>
         </div>
       </div>
     </section>
@@ -356,6 +345,9 @@ export function MapSection() {
   return (
     <section className="map-section" id="contato">
       <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <img src="/images/Localização subline.webp" alt="Localização" style={{ maxWidth: '300px' }} />
+        </div>
         <div className="map-card">
           <div className="map-head">
             <div className="map-ico">
@@ -383,11 +375,8 @@ export function MapSection() {
 
 // ===== Reviews =====
 export function Reviews() {
-  const cards = [
-    { name: "Lucas M.", initials: "LM", time: "Há 2 semanas", text: "Atendimento impecável e resultado incrível. A tatuagem ficou exatamente como eu imaginava. Equipe super atenciosa e ambiente muito limpo. Recomendo demais!" },
-    { name: "Carla R.", initials: "CR", time: "Há 1 mês", text: "Melhor estúdio que já fui! O traço é perfeito e o cuidado com a higiene é de outro nível. Voltarei com certeza para fazer minha próxima." },
-    { name: "Pedro V.", initials: "PV", time: "Há 3 semanas", text: "Profissionalismo do começo ao fim. Me explicaram cada etapa, do desenho à cicatrização. Vale cada centavo, estou apaixonado pelo resultado." },
-  ]
+  const cms = useCMSData()
+  const cards = cms.reviews || []
   return (
     <section className="reviews">
       <div className="container">
@@ -413,20 +402,27 @@ export function Reviews() {
 
 // ===== Orange Banner =====
 export function Banner() {
+  const cms = useCMSData()
+  const b = cms.banner
+  const s = cms.settings
+  const waLink = `https://wa.me/${(s.whatsapp || '5521999999999').replace(/\D/g, '')}`
   return (
     <section className="banner">
       <div className="container banner-grid">
         <div className="banner-left">
-          Sua pele conta sua<br />
-          história! Vem marcar a<br />
-          próxima com a gente
+          <div className="display" style={{ fontSize: 'clamp(40px, 6vw, 64px)', marginBottom: '16px' }}>{b.title}</div>
+          <p style={{ fontSize: 'clamp(20px, 2.5vw, 32px)', fontWeight: 'bold', lineHeight: 1.3, marginBottom: '36px' }}>{b.text}</p>
+          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-cta" style={{ maxWidth: '360px', padding: '18px 32px', fontSize: '18px' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: '8px' }}>
+              <path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.9L4 20l4.22-1.1a7.93 7.93 0 003.83.98h.01a7.94 7.94 0 005.55-13.55zm-5.54 12.2a6.58 6.58 0 01-3.36-.92l-.24-.14-2.5.65.67-2.44-.16-.25a6.6 6.6 0 0110.27-8.1 6.55 6.55 0 011.93 4.67 6.6 6.6 0 01-6.6 6.53zm3.62-4.94c-.2-.1-1.18-.58-1.36-.64-.18-.07-.31-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.6-.53-1-1.18-1.12-1.38-.11-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34l-.39-.01a.74.74 0 00-.54.25c-.18.2-.7.69-.7 1.67 0 .98.72 1.93.82 2.06.1.13 1.42 2.17 3.44 3.05.48.2.85.32 1.14.42.48.15.92.13 1.26.08.39-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.94-.05-.09-.18-.13-.38-.23z" />
+            </svg>
+            {b.ctaText || 'Agende seu horário!'}
+          </a>
         </div>
-        <div className="banner-mid">+900</div>
-        <div className="banner-right">
-          <strong>Depoimentos de 5</strong><br />
-          <strong>estrelas</strong> no Google<br />
-          Meu Negócio.
+        <div className="banner-mid" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img src={b.image} alt={b.title} style={{ maxWidth: '280px' }} />
         </div>
+        <div className="banner-right"></div>
       </div>
     </section>
   )
@@ -434,20 +430,17 @@ export function Banner() {
 
 // ===== FAQ =====
 export function FAQ() {
-  const items = [
-    { q: "Onde fica o estúdio?", a: "Av. Nossa Sra. de Copacabana, 828 — Copacabana, Rio de Janeiro - RJ, CEP 22050-001. A duas quadras do metrô Cardeal Arcoverde." },
-    { q: "Como posso marcar uma tattoo?", a: "Pelo botão 'Agende seu horário', via WhatsApp, ou passando no estúdio. Mande sua referência e a região do corpo que ajustamos data e orçamento." },
-    { q: "O estúdio utiliza equipamentos seguros e esterilizados?", a: "Sim — todos os materiais são descartáveis (agulhas, cartuchos, bicos), abertos na sua frente. Superfícies e maquinários passam por desinfecção entre sessões." },
-    { q: "Vocês oferecem suporte de cicatrização?", a: "Sim, entregamos um guia de cuidados pós-tattoo e ficamos disponíveis para qualquer dúvida durante o período de cicatrização. Retoque gratuito quando necessário." },
-    { q: "Posso levar meu filho ou acompanhante?", a: "Pode sim! Temos um espaço confortável para acompanhantes. Para menores de 18 anos é obrigatória a presença do responsável legal com documento." },
-  ]
+  const cms = useCMSData()
+  const items = cms.faq || []
+  const s = cms.settings
+  const waLink = `https://wa.me/${(s.whatsapp || '5521999999999').replace(/\D/g, '')}`
   const [openIdx, setOpenIdx] = React.useState(-1)
   return (
     <section className="faq">
       <div className="container faq-grid">
         <div className="faq-head">
           <h2>Perguntas <span className="accent">Frequentes!</span></h2>
-          <a className="btn-ghost" href="#agendar">Agende seu horário!</a>
+          <a className="btn-ghost" href={waLink} target="_blank" rel="noopener noreferrer">{s.ctaText || 'Agende seu horário!'}</a>
         </div>
         <div className="faq-list">
           {items.map((it, i) => (
@@ -466,10 +459,11 @@ export function FAQ() {
 
 // ===== Footer =====
 export function Footer() {
+  const cms = useCMSData()
   return (
     <footer className="site-footer">
       <div className="container">
-        <div className="copy">CNPJ 00.000.000/0000-00</div>
+        <div className="copy">CNPJ {cms.footer?.cnpj || '00.000.000/0000-00'}</div>
         <a href="#top" className="top-link">VOLTAR <span className="accent">PARA O TOPO</span></a>
       </div>
     </footer>
@@ -478,8 +472,10 @@ export function Footer() {
 
 // ===== WhatsApp Float =====
 export function WhatsAppFloat() {
+  const cms = useCMSData()
+  const waLink = `https://wa.me/${(cms.settings.whatsapp || '5521999999999').replace(/\D/g, '')}`
   return (
-    <a className="wa-float" href="https://wa.me/55" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+    <a className="wa-float" href={waLink} aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff">
         <path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.9L4 20l4.22-1.1a7.93 7.93 0 003.83.98h.01a7.94 7.94 0 005.55-13.55zm-5.54 12.2a6.58 6.58 0 01-3.36-.92l-.24-.14-2.5.65.67-2.44-.16-.25a6.6 6.6 0 0110.27-8.1 6.55 6.55 0 011.93 4.67 6.6 6.6 0 01-6.6 6.53zm3.62-4.94c-.2-.1-1.18-.58-1.36-.64-.18-.07-.31-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.6-.53-1-1.18-1.12-1.38-.11-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34l-.39-.01a.74.74 0 00-.54.25c-.18.2-.7.69-.7 1.67 0 .98.72 1.93.82 2.06.1.13 1.42 2.17 3.44 3.05.48.2.85.32 1.14.42.48.15.92.13 1.26.08.39-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.94-.05-.09-.18-.13-.38-.23z" />
       </svg>

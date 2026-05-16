@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "whatsapp": "5521999999999"
+  },
+  "hero": {
+    "card1": "/images/IMG_0380 1.webp",
+    "card2": "/images/tattoo realismo.webp",
+    "card3": "/images/IMG_1152 1.webp"
+  },
+  "testimonials": {
+    "v1_url": "#",
+    "v1_thumb": "/images/IMG_1152 1.webp",
+    "v2_url": "#",
+    "v2_thumb": "/images/IMG_3329 1.webp"
+  }
+}
