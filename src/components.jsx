@@ -68,6 +68,15 @@ function CopacabanaSilhouette() {
 
 // ===== Header =====
 export function Header() {
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+  };
+  const currentLangCookie = getCookie('googtrans');
+  const currentLang = currentLangCookie ? currentLangCookie.split('/')[2] : 'pt';
+
   return (
     <header className="site-header">
       <div className="container nav">
@@ -75,10 +84,41 @@ export function Header() {
           <Logo size={56} />
         </a>
         <nav>
-          <ul className="nav-links">
+          <ul className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
             <li><a href="#sobre">SOBRE NÓS</a></li>
             <li><a href="#tattoos">TATTOOS</a></li>
             <li><a href="#estudio">O ESTÚDIO</a></li>
+            <li>
+              <select 
+                onChange={(e) => {
+                  const lang = e.target.value;
+                  if (lang === 'pt') {
+                    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                    // clear from domain as well just in case
+                    document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+                  } else {
+                    document.cookie = `googtrans=/pt/${lang}; path=/`;
+                  }
+                  window.location.reload();
+                }} 
+                defaultValue={currentLang} 
+                style={{ 
+                  background: 'rgba(255,255,255,0.05)', 
+                  color: '#fff', 
+                  border: '1px solid rgba(255,255,255,0.1)', 
+                  padding: '6px 12px', 
+                  borderRadius: '20px', 
+                  cursor: 'pointer',
+                  fontFamily: 'Inter',
+                  fontSize: '12px',
+                  outline: 'none'
+                }}
+              >
+                <option value="pt" style={{ color: '#000' }}>🇧🇷 PT</option>
+                <option value="en" style={{ color: '#000' }}>🇺🇸 EN</option>
+                <option value="es" style={{ color: '#000' }}>🇪🇸 ES</option>
+              </select>
+            </li>
             <li><a href="#contato" className="cta">ENTRE EM CONTATO</a></li>
           </ul>
         </nav>

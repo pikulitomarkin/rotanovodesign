@@ -23,6 +23,17 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Hide Google Translate Banner and elements */
+.VIpgJd-ZVi9od-ORHb-OEVmcd, .goog-te-banner-frame {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
+.skiptranslate > iframe.goog-te-banner-frame {
+  display: none !important;
+}
+
 html, body {
   background: var(--bg);
   color: var(--text);
