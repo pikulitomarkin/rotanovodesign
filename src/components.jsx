@@ -145,6 +145,17 @@ export function Hero() {
     <section className="hero" id="top">
       <div className="container hero-grid">
         <div className="hero-left">
+          
+          {h.statsText && (
+            <div className="hero-stats" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
+              <div className="avatars" style={{ display: 'flex', marginLeft: '12px' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#222', marginLeft: '-12px', border: '2px solid var(--bg)' }} />
+                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#2a2a2a', marginLeft: '-12px', border: '2px solid var(--bg)' }} />
+                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#333', marginLeft: '-12px', border: '2px solid var(--bg)' }} />
+              </div>
+              <p dangerouslySetInnerHTML={{ __html: h.statsText }} style={{ fontSize: '14px', color: '#ccc', lineHeight: 1.4, margin: 0, fontWeight: 500 }} />
+            </div>
+          )}
 
           <div className="hero-title" style={{ marginBottom: '24px' }}>
             <img src={h.titleImg || "/images/Rota headline.webp"} alt="Rota da Tattoo" style={{ maxWidth: '100%', height: 'auto' }} />

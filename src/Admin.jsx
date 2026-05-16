@@ -180,6 +180,8 @@ export default function Admin() {
             <ImageField label="Título (STUDIO ROTA...)" value={form.hero.titleImg || ''} onChange={v => update('hero.titleImg', v)} />
             <ImageField label="Subtítulo (Sua pele...)" value={form.hero.subImg || ''} onChange={v => update('hero.subImg', v)} />
           </div>
+          <label style={S.label}>Estatísticas (ex: Mais de 3500 Tatuagens...)</label>
+          <input style={S.input} value={form.hero.statsText || ''} onChange={e => update('hero.statsText', e.target.value)} />
           <hr style={S.divider} />
           <ImageField label="Imagem principal (lado direito)" value={form.hero.mainImage} onChange={v => update('hero.mainImage', v)} />
           <hr style={S.divider} />

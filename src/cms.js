@@ -10,6 +10,7 @@ export const DEFAULT_DATA = {
     ctaText: "Agende seu horário!",
   },
   hero: {
+    statsText: "Mais de <span style='color: var(--accent)'>3500 Tatuagens</span> já marcadas na pele.",
     titleImg: "/images/Rota headline.webp",
     subImg: "/images/subline rota.webp",
     mainImage: "/images/Rota imagem tattoo.webp",
