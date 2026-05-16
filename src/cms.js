@@ -19,6 +19,8 @@ export const DEFAULT_DATA = {
     bannerText: "Sua pele conta sua história! Vem marcar a próxima com a gente",
   },
   about: {
+    logoImg: null,
+    titleImg: "/images/SOMOS REFERÊNCIA.webp",
     paragraph: "Já são milhares de clientes atendidos ao redor do mundo, levando nossa arte para diferentes culturas e histórias. Nossa equipe reúne artistas especializados em diversos estilos, garantindo versatilidade e precisão em cada trabalho. Somos um estúdio consolidado em Copacabana, reconhecido pela consistência e pelo nível dos projetos realizados. Prezamos por um padrão elevado em cada detalhe, do primeiro contato ao resultado final na pele. Aqui, cada atendimento é pensado para oferecer uma experiência diferenciada.",
   },
   differentials: {

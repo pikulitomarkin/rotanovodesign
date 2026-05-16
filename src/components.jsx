@@ -213,11 +213,15 @@ export function About() {
     <section className="about" id="sobre">
       <div className="container about-grid">
         <div className="about-logo">
-          <Logo size={180} />
+          {cms.about.logoImg ? (
+            <img src={cms.about.logoImg} alt="Logotipo Rota da Tattoo" style={{ maxWidth: '180px', height: 'auto' }} />
+          ) : (
+            <Logo size={180} />
+          )}
         </div>
         <div className="about-headline">
           <h2>
-            <img src="/images/SOMOS REFERÊNCIA.webp" alt="SOMOS REFERÊNCIA EM COPACABANA/RJ" style={{ maxWidth: '100%', height: 'auto' }} />
+            <img src={cms.about.titleImg || "/images/SOMOS REFERÊNCIA.webp"} alt="SOMOS REFERÊNCIA EM COPACABANA/RJ" style={{ maxWidth: '100%', height: 'auto' }} />
           </h2>
           <p style={{ color: 'var(--text-dim)', fontSize: '16px', lineHeight: 1.7, maxWidth: '60ch' }}>
             {cms.about.paragraph}

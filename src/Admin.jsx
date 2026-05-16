@@ -196,6 +196,10 @@ export default function Admin() {
         {/* Sobre nós */}
         <div style={S.section}>
           <div style={S.title}>📝 Sobre Nós</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+            <ImageField label="Logotipo (Esquerda)" value={form.about.logoImg || ''} onChange={v => update('about.logoImg', v)} />
+            <ImageField label="Título (SOMOS REFERÊNCIA...)" value={form.about.titleImg || ''} onChange={v => update('about.titleImg', v)} />
+          </div>
           <label style={S.label}>Texto descritivo</label>
           <textarea style={{ ...S.textarea, minHeight: '130px' }} value={form.about.paragraph} onChange={e => update('about.paragraph', e.target.value)} />
         </div>
