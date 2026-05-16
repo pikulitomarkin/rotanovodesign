@@ -842,23 +842,61 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ============================================
    REVIEWS CARDS
    ============================================ */
-.reviews {
-  padding: 0 0 clamp(60px, 8vw, 80px);
+/* ===== Reviews Marquee ===== */
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
-.reviews-row {
-  max-width: 720px;
-  margin: 24px auto 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 4px;
+@keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.reviews {
+  padding: clamp(60px, 8vw, 80px) 0;
+  overflow: hidden;
+}
+.reviews-marquee-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.marquee-track {
+  width: 100%;
+  overflow: hidden;
+  /* Fade edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+.marquee-inner {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+}
+.marquee-left {
+  animation: marquee-left 35s linear infinite;
+}
+.marquee-right {
+  animation: marquee-right 35s linear infinite;
+}
+.marquee-track:hover .marquee-inner {
+  animation-play-state: paused;
 }
 .review-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  padding: 14px;
-  border-radius: 4px;
+  padding: 18px;
+  border-radius: 10px;
   display: grid;
-  gap: 8px;
+  gap: 10px;
+  width: 300px;
+  flex-shrink: 0;
+  transition: border-color 0.3s, transform 0.3s;
+  cursor: default;
+}
+.review-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
 }
 .review-card .who {
   display: flex;

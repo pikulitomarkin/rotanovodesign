@@ -377,23 +377,39 @@ export function MapSection() {
 export function Reviews() {
   const cms = useCMSData()
   const cards = cms.reviews || []
+  // Split into two rows for opposite-direction marquee
+  const half = Math.ceil(cards.length / 2)
+  const row1 = cards.slice(0, half)
+  const row2 = cards.slice(half)
+
+  const Card = ({ c }) => (
+    <div className="review-card">
+      <div className="who">
+        <div className="avatar">{c.initials}</div>
+        <div>
+          <div className="name">{c.name}</div>
+          <div className="time">{c.time}</div>
+        </div>
+      </div>
+      <div className="stars">★★★★★</div>
+      <div className="text">{c.text}</div>
+    </div>
+  )
+
   return (
     <section className="reviews">
-      <div className="container">
-        <div className="reviews-row">
-          {cards.map((c, i) => (
-            <div className="review-card" key={i}>
-              <div className="who">
-                <div className="avatar">{c.initials}</div>
-                <div>
-                  <div className="name">{c.name}</div>
-                  <div className="time">{c.time}</div>
-                </div>
-              </div>
-              <div className="stars">★★★★★</div>
-              <div className="text">{c.text}</div>
-            </div>
-          ))}
+      <div className="reviews-marquee-wrap">
+        {/* Row 1 — scrolls left */}
+        <div className="marquee-track">
+          <div className="marquee-inner marquee-left">
+            {[...row1, ...row1].map((c, i) => <Card key={i} c={c} />)}
+          </div>
+        </div>
+        {/* Row 2 — scrolls right */}
+        <div className="marquee-track">
+          <div className="marquee-inner marquee-right">
+            {[...row2, ...row2].map((c, i) => <Card key={i} c={c} />)}
+          </div>
         </div>
       </div>
     </section>
