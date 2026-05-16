@@ -359,10 +359,17 @@ export function MapSection() {
               <span /><span />
             </div>
           </div>
-          <div className="map-canvas">
-            <div className="roads" />
-            <div className="ocean" />
-            <div className="pin" />
+          <div className="map-canvas" style={{ width: '100%', aspectRatio: '16/9' }}>
+            <iframe 
+              src="https://www.google.com/maps?q=Rota+da+Tattoo,+Av.+Nossa+Sra.+de+Copacabana,+828,+Copacabana,+Rio+de+Janeiro&output=embed" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Localização do Estúdio Rota da Tattoo"
+            ></iframe>
           </div>
         </div>
       </div>
