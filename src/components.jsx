@@ -567,9 +567,13 @@ export function Piercing() {
           <h2 dangerouslySetInnerHTML={{ __html: p.title }} />
           <p dangerouslySetInnerHTML={{ __html: p.text }} />
           
-          <div className="guarantee">
-            <div className="guarantee-icon">+</div>
-            <span>{p.guarantee}</span>
+          <div style={{ padding: '16px 0', borderTop: '1px solid #333', borderBottom: '1px solid #333', marginBottom: '32px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {(p.guarantees || (p.guarantee ? [p.guarantee] : [])).map((g, i) => (
+              <div className="guarantee" style={{ border: 'none', padding: 0, margin: 0 }} key={i}>
+                <div className="guarantee-icon">+</div>
+                <span>{g}</span>
+              </div>
+            ))}
           </div>
 
           <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-cta" style={{ maxWidth: '300px' }}>

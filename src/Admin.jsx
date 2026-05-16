@@ -365,8 +365,29 @@ export default function Admin() {
           <input style={S.input} value={form.piercing?.title || ''} onChange={e => update('piercing.title', e.target.value)} />
           <label style={S.label}>Texto principal</label>
           <textarea style={{ ...S.textarea, minHeight: '80px' }} value={form.piercing?.text || ''} onChange={e => update('piercing.text', e.target.value)} />
-          <label style={S.label}>Garantia / Selo</label>
-          <input style={S.input} value={form.piercing?.guarantee || ''} onChange={e => update('piercing.guarantee', e.target.value)} />
+          <label style={S.label}>Garantias / Selos</label>
+          {(form.piercing?.guarantees || (form.piercing?.guarantee ? [form.piercing.guarantee] : [])).map((g, idx) => (
+            <div key={idx} style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+              <input style={{ ...S.input, marginBottom: 0 }} value={g} onChange={e => {
+                const next = JSON.parse(JSON.stringify(form));
+                if (!next.piercing.guarantees) next.piercing.guarantees = next.piercing.guarantee ? [next.piercing.guarantee] : [];
+                next.piercing.guarantees[idx] = e.target.value;
+                setForm(next); setStatus('idle');
+              }} />
+              <button style={{ background: '#333', color: '#fff', border: 'none', padding: '0 12px', borderRadius: '4px', cursor: 'pointer' }} onClick={() => {
+                const next = JSON.parse(JSON.stringify(form));
+                if (!next.piercing.guarantees) next.piercing.guarantees = next.piercing.guarantee ? [next.piercing.guarantee] : [];
+                next.piercing.guarantees.splice(idx, 1);
+                setForm(next); setStatus('idle');
+              }}>X</button>
+            </div>
+          ))}
+          <button style={{ background: '#222', color: '#fff', border: '1px dashed #555', padding: '8px', width: '100%', borderRadius: '4px', cursor: 'pointer', marginBottom: '16px' }} onClick={() => {
+            const next = JSON.parse(JSON.stringify(form));
+            if (!next.piercing.guarantees) next.piercing.guarantees = next.piercing.guarantee ? [next.piercing.guarantee] : [];
+            next.piercing.guarantees.push("");
+            setForm(next); setStatus('idle');
+          }}>+ Adicionar Garantia</button>
           
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '16px' }}>
             <div style={{ gridColumn: 'span 2' }}>

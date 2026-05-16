@@ -57,7 +57,7 @@ export const DEFAULT_DATA = {
   piercing: {
     title: "Para nós, <span style='color: var(--accent)'>Piercing</span> é uma forma de comunicar liberdade",
     text: "Aqui, você encontra <span style='color: var(--accent)'>profissionais experientes</span>, <span style='color: var(--accent)'>ambiente seguro</span> e <span style='color: var(--accent)'>materiais 100% esterilizados</span>, para que cada detalhe da sua experiência seja leve, tranquila e cheia de estilo.",
-    guarantee: "Higiene & Biossegurança garantidas com a Rota!",
+    guarantees: ["Higiene & Biossegurança garantidas com a Rota!"],
     img1: null,
     img2: null,
     img3: null,
