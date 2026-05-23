@@ -209,7 +209,8 @@ export function StylesStrip() {
       <div className="inner">
         {styles.map((s, i) => (
           <React.Fragment key={s}>
-            {s}{i < styles.length - 1 && <span className="dot">•</span>}
+            <span style={{ color: i % 2 !== 0 ? 'var(--accent)' : '#fff' }}>{s}</span>
+            {i < styles.length - 1 && <span className="dot">•</span>}
           </React.Fragment>
         ))}
       </div>
