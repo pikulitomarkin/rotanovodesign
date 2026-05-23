@@ -88,6 +88,7 @@ export function Header() {
             <li><a href="#sobre">SOBRE NÓS</a></li>
             <li><a href="#tattoos">TATTOOS</a></li>
             <li><a href="#estudio">O ESTÚDIO</a></li>
+            <li><a href="#piercing">PIERCING</a></li>
             <li>
               <select 
                 onChange={(e) => {
@@ -650,7 +651,7 @@ export function Piercing() {
   if (!p) return null
   const waLink = `https://wa.me/${(s.whatsapp || '5521999999999').replace(/\D/g, '')}`
   return (
-    <section className="piercing-section">
+    <section className="piercing-section" id="piercing">
       <div className="container piercing-grid">
         <div className="piercing-content">
           <h2 dangerouslySetInnerHTML={{ __html: p.title }} />
