@@ -1,6 +1,9 @@
-import { put, list } from '@vercel/blob';
+import pg from 'pg';
+const { Pool } = pg;
 
-const CMS_KEY = 'cms-data.json';
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,11 +14,9 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
-      const { blobs } = await list({ prefix: CMS_KEY, token: process.env.BLOB_READ_WRITE_TOKEN });
-      if (!blobs.length) return res.status(200).json(null);
-      const response = await fetch(blobs[0].downloadUrl || blobs[0].url);
-      const data = await response.json();
-      res.status(200).json(data);
+      const result = await pool.query('SELECT data FROM cms_data WHERE id = 1');
+      if (result.rows.length === 0) return res.status(200).json(null);
+      res.status(200).json(result.rows[0].data);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
@@ -24,14 +25,14 @@ export default async function handler(req, res) {
 
   if (req.method === 'POST') {
     try {
-      const json = JSON.stringify(req.body, null, 2);
-      const blob = await put(CMS_KEY, json, {
-        access: 'public',
-        contentType: 'application/json',
-        token: process.env.BLOB_READ_WRITE_TOKEN,
-        allowOverwrite: true,
-      });
-      res.status(200).json({ success: true, url: blob.url });
+      const json = JSON.stringify(req.body);
+      const exists = await pool.query('SELECT id FROM cms_data WHERE id = 1');
+      if (exists.rows.length > 0) {
+        await pool.query('UPDATE cms_data SET data = $1 WHERE id = 1', [json]);
+      } else {
+        await pool.query('INSERT INTO cms_data (id, data) VALUES (1, $1)', [json]);
+      }
+      res.status(200).json({ success: true, url: '/api/data' });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }

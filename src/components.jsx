@@ -159,10 +159,10 @@ export function Hero() {
           )}
 
           <div className="hero-title" style={{ marginBottom: '24px' }}>
-            <img src={h.titleImg || "/images/Rota headline.webp"} alt="Rota da Tattoo" style={{ maxWidth: '100%', height: 'auto' }} />
+            <img fetchpriority="high" src={h.titleImg || "/images/Rota headline.webp"} alt="Rota da Tattoo" style={{ maxWidth: '100%', height: 'auto' }} />
           </div>
           <div className="hero-sub" style={{ marginBottom: '24px' }}>
-            <img src={h.subImg || "/images/subline rota.webp"} alt="Tatuagem e Piercing Copacabana" style={{ maxWidth: '80%', height: 'auto' }} />
+            <img fetchpriority="high" src={h.subImg || "/images/subline rota.webp"} alt="Tatuagem e Piercing Copacabana" style={{ maxWidth: '80%', height: 'auto' }} />
           </div>
           {h.bannerText && (
             <p style={{ color: '#fff', fontWeight: 700, fontSize: 'clamp(16px, 1.6vw, 22px)', lineHeight: 1.4, marginBottom: '28px', maxWidth: '420px' }}>{h.bannerText}</p>
@@ -176,7 +176,7 @@ export function Hero() {
         </div>
 
         <div className="hero-image">
-          <img src={h.mainImage} alt="Tattoo Artist" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
+          <img fetchpriority="high" src={h.mainImage} alt="Tattoo Artist" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
           <div className="hero-pin">
             <div className="pin-ico">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -192,7 +192,7 @@ export function Hero() {
             {[{src: h.card1, label: '001'}, {src: h.card2, label: '002'}, {src: h.card3, label: '003'}].map(({src, label}) => (
               <div className="h-card" key={label}>
                 <span className="h-card-num">{label}</span>
-                {src && <img src={src} alt={label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+                {src && <img loading="lazy" decoding="async" src={src} alt={label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
               </div>
             ))}
           </div>
@@ -227,14 +227,14 @@ export function About() {
       <div className="container about-grid">
         <div className="about-logo">
           {cms.about.logoImg ? (
-            <img src={cms.about.logoImg} alt="Logotipo Rota da Tattoo" style={{ maxWidth: '180px', height: 'auto' }} />
+            <img loading="lazy" decoding="async" src={cms.about.logoImg} alt="Logotipo Rota da Tattoo" style={{ maxWidth: '180px', height: 'auto' }} />
           ) : (
             <Logo size={180} />
           )}
         </div>
         <div className="about-headline">
           <h2>
-            <img src={cms.about.titleImg || "/images/SOMOS REFERÊNCIA.webp"} alt="SOMOS REFERÊNCIA EM COPACABANA/RJ" style={{ maxWidth: '100%', height: 'auto' }} />
+            <img loading="lazy" decoding="async" src={cms.about.titleImg || "/images/SOMOS REFERÊNCIA.webp"} alt="SOMOS REFERÊNCIA EM COPACABANA/RJ" style={{ maxWidth: '100%', height: 'auto' }} />
           </h2>
           <p style={{ color: 'var(--text-dim)', fontSize: '16px', lineHeight: 1.7, maxWidth: '60ch' }}>
             {cms.about.paragraph}
@@ -286,7 +286,7 @@ export function Differentials() {
           <h3 style={{ marginBottom: '32px' }}>
             A <strong>Rota da Tattoo</strong> é diferenciada pelo
             <div style={{ marginTop: '12px' }}>
-              <img src="/images/AMBIENTE ACOLHEDOR.webp" alt="AMBIENTE ACOLHEDOR" style={{ maxWidth: '100%', height: 'auto' }} />
+              <img loading="lazy" decoding="async" src="/images/AMBIENTE ACOLHEDOR.webp" alt="AMBIENTE ACOLHEDOR" style={{ maxWidth: '100%', height: 'auto' }} />
             </div>
           </h3>
           <div className="accordion">
@@ -309,6 +309,7 @@ export function Differentials() {
 // ===== Gallery / Estilos =====
 export function Gallery() {
   const cms = useCMSData()
+  const [selectedImage, setSelectedImage] = React.useState(null)
   const g = cms.gallery
   const blocks = [
     { eyebrow: "TATTOO",     title: "BLACKWORK",  key: "blackwork",  labelImg: "/images/tattoo blackwork.webp" },
@@ -322,11 +323,14 @@ export function Gallery() {
     <section className="gallery" id="tattoos">
       <div className="container">
         <div className="gallery-header">
-          <img src="/images/ESTILOS DE TATTOO.webp" alt="ESTILOS DE TATTOO" style={{ margin: '0 auto 12px', maxWidth: '300px' }} />
+          <img loading="lazy" decoding="async" src="/images/ESTILOS DE TATTOO.webp" alt="ESTILOS DE TATTOO" style={{ margin: '0 auto 12px', maxWidth: '300px' }} />
           <p style={{ fontSize: '11px', letterSpacing: '0.4em' }}>CONTAMOS COM VÁRIOS ESTILOS ÚNICOS</p>
+          <p style={{ color: '#888', fontSize: '12px', marginTop: '12px', fontStyle: 'italic' }}>
+            Dica: Clique nas fotos para ver os detalhes
+          </p>
         </div>
         <div className="featured-trio" style={{ display: 'block', marginBottom: '80px', textAlign: 'center' }}>
-          <img src="/images/CARD DE TATTOOS.webp" alt="Tattoos em destaque" style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }} />
+          <img loading="lazy" decoding="async" src="/images/CARD DE TATTOOS.webp" alt="Tattoos em destaque" style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }} />
         </div>
         {blocks.map((b) => {
           const imgs = g[b.key] || [null, null, null]
@@ -334,7 +338,7 @@ export function Gallery() {
             <div className="style-block" key={b.key}>
               <div className="style-label" style={{ marginBottom: '24px' }}>
                 {b.labelImg ? (
-                  <img src={b.labelImg} alt={b.title} style={{ maxWidth: '280px' }} />
+                  <img loading="lazy" decoding="async" src={b.labelImg} alt={b.title} style={{ maxWidth: '280px' }} />
                 ) : (
                   <>
                     <Logo size={32} />
@@ -345,7 +349,8 @@ export function Gallery() {
               <div className="style-grid">
                 {[0,1,2].map(j => (
                   <div key={j} className={`tile${!imgs[j] ? ' ph-skin-' + (((j + blocks.indexOf(b)) % 9) + 1) : ''}`}
-                    style={imgs[j] ? { backgroundImage: `url(${imgs[j]})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}>
+                    onClick={() => imgs[j] && setSelectedImage(imgs[j])}
+                    style={imgs[j] ? { backgroundImage: `url(${imgs[j]})`, backgroundSize: 'cover', backgroundPosition: 'center', cursor: 'zoom-in' } : {}}>
                   </div>
                 ))}
               </div>
@@ -353,6 +358,55 @@ export function Gallery() {
           )
         })}
       </div>
+
+      {selectedImage && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.95)',
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            cursor: 'zoom-out'
+          }}
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              background: 'none',
+              border: 'none',
+              color: '#fff',
+              fontSize: '40px',
+              cursor: 'pointer',
+              zIndex: 10
+            }}
+          >
+            &times;
+          </button>
+          <p style={{ color: '#aaa', fontSize: '13px', marginBottom: '16px', fontFamily: 'Inter', textAlign: 'center', padding: '0 20px' }}>
+            🖥️ <strong>Desktop:</strong> Use o zoom do navegador ou scroll do mouse<br/>
+            📱 <strong>Mobile:</strong> Faça o movimento de pinça com os dedos na tela
+          </p>
+          <img 
+            src={selectedImage} 
+            alt="Tattoo Ampliada"
+            style={{ 
+              maxWidth: '95vw', 
+              maxHeight: '80vh', 
+              objectFit: 'contain',
+              borderRadius: '8px',
+              boxShadow: '0 10px 40px rgba(0,0,0,0.8)'
+            }} 
+            onClick={(e) => e.stopPropagation()} 
+          />
+        </div>
+      )}
     </section>
   )
 }
@@ -382,7 +436,7 @@ export function Testimonials() {
           <div className="flag" style={{ background: 'linear-gradient(180deg, #aa151b 33%, #f1bf00 33%, #f1bf00 66%, #aa151b 66%)' }} />
         </div>
         <div style={{ marginBottom: '36px', textAlign: 'center' }}>
-          <img src="/images/TURISTAS.webp" alt="Depoimentos" style={{ maxWidth: '100%', height: 'auto' }} />
+          <img loading="lazy" decoding="async" src="/images/TURISTAS.webp" alt="Depoimentos" style={{ maxWidth: '100%', height: 'auto' }} />
         </div>
         <div className="video-row" style={{
           display: 'flex',
@@ -397,7 +451,7 @@ export function Testimonials() {
             return (
               <a key={i} href={v.url || '#'} target="_blank" rel="noreferrer" className="video-card" style={{ textDecoration: 'none', flexShrink: 0 }}>
                 {thumbUrl ? (
-                  <img src={thumbUrl} className="vc-bg" alt="Thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
+                  <img loading="lazy" decoding="async" src={thumbUrl} className="vc-bg" alt="Thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
                 ) : (
                   <div className="vc-bg" />
                 )}
@@ -425,7 +479,7 @@ export function Team() {
         <div className="team-lead">
           <p>{t.leadText}</p>
           <div className="team-faces" style={{ display: 'block' }}>
-            <img src={t.teamImage} alt="Tatuadores" style={{ maxWidth: '100%', height: 'auto' }} />
+            <img loading="lazy" decoding="async" src={t.teamImage} alt="Tatuadores" style={{ maxWidth: '100%', height: 'auto' }} />
           </div>
         </div>
         <div className="team-copy">
@@ -443,7 +497,7 @@ export function MapSection() {
     <section className="map-section" id="contato">
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <img src="/images/Localização subline.webp" alt="Localização" style={{ maxWidth: '300px' }} />
+          <img loading="lazy" decoding="async" src="/images/Localização subline.webp" alt="Localização" style={{ maxWidth: '300px' }} />
         </div>
         <div className="map-card">
           <div className="map-head">
@@ -531,7 +585,7 @@ export function Banner() {
           <p dangerouslySetInnerHTML={{ __html: b.text }} />
         </div>
         <div className="banner-right">
-          <img src={b.image} alt="+900 Avaliações" style={{ maxWidth: '400px', width: '100%', height: 'auto' }} />
+          <img loading="lazy" decoding="async" src={b.image} alt="+900 Avaliações" style={{ maxWidth: '400px', width: '100%', height: 'auto' }} />
         </div>
       </div>
     </section>
@@ -650,7 +704,7 @@ export function StudioSpace() {
                 e.currentTarget.parentElement.style.animationPlayState = 'running';
               }}
               >
-                <img src={img} alt={`Espaço ${i}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img loading="lazy" decoding="async" src={img} alt={`Espaço ${i}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             ))}
           </div>
@@ -689,11 +743,11 @@ export function Piercing() {
         </div>
         <div className="piercing-images">
           <div className="p-img-left">
-            {p.img1 && <img src={p.img1} alt="Piercing 1" />}
+            {p.img1 && <img loading="lazy" decoding="async" src={p.img1} alt="Piercing 1" />}
           </div>
           <div className="p-img-right">
-            {p.img2 && <img src={p.img2} alt="Piercing 2" />}
-            {p.img3 && <img src={p.img3} alt="Piercing 3" />}
+            {p.img2 && <img loading="lazy" decoding="async" src={p.img2} alt="Piercing 2" />}
+            {p.img3 && <img loading="lazy" decoding="async" src={p.img3} alt="Piercing 3" />}
           </div>
         </div>
       </div>
