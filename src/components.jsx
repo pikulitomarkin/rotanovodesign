@@ -315,8 +315,8 @@ export function Gallery() {
     { eyebrow: "TATTOO",     title: "REALISMO",   key: "realismo",   labelImg: "/images/tattoo realismo.webp" },
     { eyebrow: "ORNAMENTAL", title: "GEOMÉTRICO", key: "geometrico", labelImg: "/images/ornamental geométrico.webp" },
     { eyebrow: "TATTOO",     title: "FINE LINE",  key: "fineline",   labelImg: "/images/tattoo fineline.webp" },
-    { eyebrow: "ANIME",      title: "GEEK",       key: "animegeek",  labelImg: null },
-    { eyebrow: "ESCRITA",    title: "LETTERING",  key: "lettering",  labelImg: null },
+    { eyebrow: "ANIME",      title: "GEEK",       key: "oldschool",  labelImg: null },
+    { eyebrow: "ESCRITA",    title: "LETTERING",  key: "polinesio",  labelImg: null },
   ]
   return (
     <section className="gallery" id="tattoos">
@@ -364,9 +364,9 @@ export function Testimonials() {
 
   const getYouTubeId = (url) => {
     if (!url) return null;
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
     const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
+    return match ? match[1] : null;
   };
 
   return (
@@ -396,7 +396,11 @@ export function Testimonials() {
             const thumbUrl = v.thumb || (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : null);
             return (
               <a key={i} href={v.url || '#'} target="_blank" rel="noreferrer" className="video-card" style={{ textDecoration: 'none', flexShrink: 0 }}>
-                {thumbUrl && <img src={thumbUrl} className="vc-bg" alt="Thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />}
+                {thumbUrl ? (
+                  <img src={thumbUrl} className="vc-bg" alt="Thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
+                ) : (
+                  <div className="vc-bg" />
+                )}
                 <div className="vc-tag">
                   <div className="av" />
                   <div className="label">{v.name || `Depoimento ${i + 1}`}<small>Cliente</small></div>

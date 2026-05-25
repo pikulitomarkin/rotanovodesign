@@ -175,9 +175,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   min-height: 70vh;
 }
 .hero-left {
-  flex: 0 0 55%;
+  flex: 0 0 50%;
   position: relative;
   z-index: 2;
+  margin-left: -2vw;
 }
 .hero-eyebrow {
   display: flex;
@@ -275,14 +276,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero-image {
   position: absolute;
   top: 10%;
-  right: 0;
+  right: 2vw;
   bottom: 0;
-  width: 50vw;
-  border-radius: 40px 0 0 0;
+  width: 46vw;
+  border-radius: 40px 40px 0 40px;
   overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-right: none;
   border-bottom: none;
   box-shadow: var(--glass-shadow);
   backdrop-filter: blur(16px);
