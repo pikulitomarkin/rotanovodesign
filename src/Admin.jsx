@@ -256,8 +256,8 @@ export default function Admin() {
             { key: 'realismo', label: 'Realismo' },
             { key: 'geometrico', label: 'Ornamental Geométrico' },
             { key: 'fineline', label: 'Fine Line' },
-            { key: 'oldschool', label: 'Old School' },
-            { key: 'polinesio', label: 'Polinésio' },
+            { key: 'oldschool', label: 'Anime Geek' },
+            { key: 'polinesio', label: 'Escrita Lettering' },
           ].map(({ key, label }) => (
             <div key={key} style={{ marginBottom: '24px' }}>
               <div style={{ ...S.label, marginBottom: '10px' }}><span style={S.badge}>{label}</span></div>

@@ -169,10 +169,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   overflow: hidden;
 }
 .hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: clamp(32px, 5vw, 80px);
+  display: flex;
   align-items: center;
+  gap: clamp(32px, 5vw, 80px);
+  min-height: 70vh;
+}
+.hero-left {
+  flex: 0 0 50%;
+  position: relative;
+  z-index: 2;
+  margin-left: -2vw;
 }
 .hero-eyebrow {
   display: flex;
@@ -268,15 +274,20 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .btn-cta:active { transform: translateY(1px); }
 
 .hero-image {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  border-radius: var(--radius);
+  position: absolute;
+  top: 10%;
+  right: 2vw;
+  bottom: 0;
+  width: 46vw;
+  border-radius: 40px 40px 0 40px;
   overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--border);
+  border-bottom: none;
   box-shadow: var(--glass-shadow);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  z-index: 0;
 }
 .hero-image .image-slot-ph {
   position: absolute;
@@ -1098,7 +1109,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .menu-btn { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; }
-  .hero-grid { grid-template-columns: 1fr; }
+  .hero-grid { flex-direction: column; min-height: auto; }
+  .hero-left { flex: 1 1 auto; width: 100%; }
+  .hero-image {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
   .about-grid, .diff-grid, .team-grid, .faq-grid { grid-template-columns: 1fr; }
   .banner-grid { grid-template-columns: 1fr; text-align: center; }
   .banner-left { text-align: center; }
