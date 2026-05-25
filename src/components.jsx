@@ -315,8 +315,8 @@ export function Gallery() {
     { eyebrow: "TATTOO",     title: "REALISMO",   key: "realismo",   labelImg: "/images/tattoo realismo.webp" },
     { eyebrow: "ORNAMENTAL", title: "GEOMÉTRICO", key: "geometrico", labelImg: "/images/ornamental geométrico.webp" },
     { eyebrow: "TATTOO",     title: "FINE LINE",  key: "fineline",   labelImg: "/images/tattoo fineline.webp" },
-    { eyebrow: "TATTOO",     title: "OLD SCHOOL", key: "oldschool",  labelImg: null },
-    { eyebrow: "TATTOO",     title: "POLINÉSIO",  key: "polinesio",  labelImg: null },
+    { eyebrow: "ANIME",      title: "GEEK",       key: "animegeek",  labelImg: null },
+    { eyebrow: "ESCRITA",    title: "LETTERING",  key: "lettering",  labelImg: null },
   ]
   return (
     <section className="gallery" id="tattoos">
@@ -361,6 +361,14 @@ export function Gallery() {
 export function Testimonials() {
   const cms = useCMSData()
   const videos = cms.testimonials?.videos || []
+
+  const getYouTubeId = (url) => {
+    if (!url) return null;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
   return (
     <section className="testimonials">
       <div className="bg-mark" />
@@ -377,21 +385,26 @@ export function Testimonials() {
           <img src="/images/TURISTAS.webp" alt="Depoimentos" style={{ maxWidth: '100%', height: 'auto' }} />
         </div>
         <div className="video-row" style={{
-          overflowX: videos.length > 3 ? 'auto' : 'visible',
-          flexWrap: videos.length > 3 ? 'nowrap' : 'wrap',
-          justifyContent: videos.length <= 3 ? 'center' : 'flex-start',
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          gap: '18px',
           paddingBottom: '8px',
         }}>
-          {videos.map((v, i) => (
-            <a key={i} href={v.url || '#'} target="_blank" rel="noreferrer" className="video-card" style={{ textDecoration: 'none', flexShrink: 0 }}>
-              {v.thumb && <img src={v.thumb} className="vc-bg" alt="Thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />}
-              <div className="vc-tag">
-                <div className="av" />
-                <div className="label">{v.name || `Depoimento ${i + 1}`}<small>Cliente</small></div>
-              </div>
-              <div className="play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
-            </a>
-          ))}
+          {videos.map((v, i) => {
+            const ytId = getYouTubeId(v.url);
+            const thumbUrl = v.thumb || (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : null);
+            return (
+              <a key={i} href={v.url || '#'} target="_blank" rel="noreferrer" className="video-card" style={{ textDecoration: 'none', flexShrink: 0 }}>
+                {thumbUrl && <img src={thumbUrl} className="vc-bg" alt="Thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />}
+                <div className="vc-tag">
+                  <div className="av" />
+                  <div className="label">{v.name || `Depoimento ${i + 1}`}<small>Cliente</small></div>
+                </div>
+                <div className="play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
