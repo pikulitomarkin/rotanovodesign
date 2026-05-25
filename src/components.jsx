@@ -309,6 +309,7 @@ export function Differentials() {
 // ===== Gallery / Estilos =====
 export function Gallery() {
   const cms = useCMSData()
+  const [selectedImage, setSelectedImage] = React.useState(null)
   const g = cms.gallery
   const blocks = [
     { eyebrow: "TATTOO",     title: "BLACKWORK",  key: "blackwork",  labelImg: "/images/tattoo blackwork.webp" },
@@ -324,6 +325,9 @@ export function Gallery() {
         <div className="gallery-header">
           <img loading="lazy" decoding="async" src="/images/ESTILOS DE TATTOO.webp" alt="ESTILOS DE TATTOO" style={{ margin: '0 auto 12px', maxWidth: '300px' }} />
           <p style={{ fontSize: '11px', letterSpacing: '0.4em' }}>CONTAMOS COM VÁRIOS ESTILOS ÚNICOS</p>
+          <p style={{ color: '#888', fontSize: '12px', marginTop: '12px', fontStyle: 'italic' }}>
+            Dica: Clique nas fotos para ver os detalhes
+          </p>
         </div>
         <div className="featured-trio" style={{ display: 'block', marginBottom: '80px', textAlign: 'center' }}>
           <img loading="lazy" decoding="async" src="/images/CARD DE TATTOOS.webp" alt="Tattoos em destaque" style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }} />
@@ -345,7 +349,8 @@ export function Gallery() {
               <div className="style-grid">
                 {[0,1,2].map(j => (
                   <div key={j} className={`tile${!imgs[j] ? ' ph-skin-' + (((j + blocks.indexOf(b)) % 9) + 1) : ''}`}
-                    style={imgs[j] ? { backgroundImage: `url(${imgs[j]})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}>
+                    onClick={() => imgs[j] && setSelectedImage(imgs[j])}
+                    style={imgs[j] ? { backgroundImage: `url(${imgs[j]})`, backgroundSize: 'cover', backgroundPosition: 'center', cursor: 'zoom-in' } : {}}>
                   </div>
                 ))}
               </div>
@@ -353,6 +358,55 @@ export function Gallery() {
           )
         })}
       </div>
+
+      {selectedImage && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.95)',
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            cursor: 'zoom-out'
+          }}
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              background: 'none',
+              border: 'none',
+              color: '#fff',
+              fontSize: '40px',
+              cursor: 'pointer',
+              zIndex: 10
+            }}
+          >
+            &times;
+          </button>
+          <p style={{ color: '#aaa', fontSize: '13px', marginBottom: '16px', fontFamily: 'Inter', textAlign: 'center', padding: '0 20px' }}>
+            🖥️ <strong>Desktop:</strong> Use o zoom do navegador ou scroll do mouse<br/>
+            📱 <strong>Mobile:</strong> Faça o movimento de pinça com os dedos na tela
+          </p>
+          <img 
+            src={selectedImage} 
+            alt="Tattoo Ampliada"
+            style={{ 
+              maxWidth: '95vw', 
+              maxHeight: '80vh', 
+              objectFit: 'contain',
+              borderRadius: '8px',
+              boxShadow: '0 10px 40px rgba(0,0,0,0.8)'
+            }} 
+            onClick={(e) => e.stopPropagation()} 
+          />
+        </div>
+      )}
     </section>
   )
 }
