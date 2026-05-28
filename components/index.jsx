@@ -183,13 +183,13 @@ export function Hero() {
         </div>
 
         <div className="hero-image">
-          <img fetchpriority="high" src={h.mainImage} alt="Tattoo Artist" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
+          <Image priority src={h.mainImage} alt="Tattoo Artist" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
 
           <div className="hero-cards">
             {[{src: h.card1, label: '001'}, {src: h.card2, label: '002'}, {src: h.card3, label: '003'}].map(({src, label}) => (
               <div className="h-card" key={label}>
                 <span className="h-card-num">{label}</span>
-                {src && <img loading="lazy" decoding="async" src={src} alt={label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+                {src && <Image src={src} alt={label} fill sizes="150px" style={{ objectFit: 'cover' }} />}
               </div>
             ))}
           </div>
@@ -257,16 +257,14 @@ export function Differentials() {
       <div className="container diff-grid">
         <div className="diff-image" style={{ position: 'relative', overflow: 'hidden' }}>
           {images.map((src, idx) => (
-            <img 
+            <Image 
               key={idx} 
               src={src} 
               alt="Tatuador em ação" 
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               style={{ 
-                width: '100%', 
-                height: '100%', 
                 objectFit: 'cover', 
-                position: 'absolute', 
-                inset: 0, 
                 opacity: idx === imgIdx ? 1 : 0, 
                 transition: 'opacity 1s ease-in-out' 
               }} 

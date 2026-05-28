@@ -20,23 +20,29 @@ export const metadata = {
   }
 };
 
+import Script from 'next/script';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <head>
         <meta name="google-site-verification" content="" />
-        <script type="text/javascript" dangerouslySetInnerHTML={{
-          __html: `
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
-            }
-          `
-        }} />
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
       </head>
       <body className={`${inter.variable} ${archivo.variable}`}>
         <div id="google_translate_element" style={{ display: 'none' }}></div>
         {children}
+        
+        <Script id="google-translate-init" strategy="lazyOnload">
+          {`
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es', autoDisplay: false}, 'google_translate_element');
+            }
+          `}
+        </Script>
+        <Script 
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" 
+          strategy="lazyOnload" 
+        />
       </body>
     </html>
   );
