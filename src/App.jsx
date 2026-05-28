@@ -1,8 +1,8 @@
 import React from 'react'
 import {
   Header, Hero, StylesStrip, About, Differentials,
-  Gallery, StudioSpace, Piercing, Testimonials, Team, MapSection, Reviews,
-  Banner, FAQ, Footer, WhatsAppFloat
+  Gallery, StudioSpace, Piercing, Team, MapSection, Reviews,
+  FAQ, Footer, WhatsAppFloat, Tourists
 } from './components.jsx'
 
 export default function App() {
@@ -20,12 +20,12 @@ export default function App() {
         <Differentials />
         <Gallery />
         <StudioSpace />
+        <Tourists />
         <Piercing />
-        <Testimonials />
         <Team />
         <MapSection />
         <Reviews />
-        <Banner />
+        <Tourists />
         <FAQ />
       </main>
       <Footer />
