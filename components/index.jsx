@@ -79,6 +79,8 @@ function CopacabanaSilhouette() {
 // ===== Header =====
 export function Header() {
   const [lang, setLang] = React.useState('pt');
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
 
   React.useEffect(() => {
     if (typeof document !== 'undefined') {
