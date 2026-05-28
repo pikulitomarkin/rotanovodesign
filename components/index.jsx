@@ -79,6 +79,8 @@ function CopacabanaSilhouette() {
 // ===== Header =====
 export function Header() {
   const [lang, setLang] = React.useState('pt');
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
 
   React.useEffect(() => {
     if (typeof document !== 'undefined') {
@@ -100,11 +102,11 @@ export function Header() {
           <Logo size={56} />
         </a>
         <nav>
-          <ul className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-            <li><a href="#sobre">SOBRE NÓS</a></li>
-            <li><a href="#tattoos">TATTOOS</a></li>
-            <li><a href="#estudio">O ESTÚDIO</a></li>
-            <li><a href="#piercing">PIERCING</a></li>
+          <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
+            <li><a href="#sobre" onClick={() => setMenuOpen(false)}>SOBRE NÓS</a></li>
+            <li><a href="#tattoos" onClick={() => setMenuOpen(false)}>TATTOOS</a></li>
+            <li><a href="#estudio" onClick={() => setMenuOpen(false)}>O ESTÚDIO</a></li>
+            <li><a href="#piercing" onClick={() => setMenuOpen(false)}>PIERCING</a></li>
             <li>
               <select 
                 value={lang}
@@ -136,15 +138,22 @@ export function Header() {
                 <option value="es" style={{ color: '#000' }}>🇪🇸 ES</option>
               </select>
             </li>
-            <li><a href="#contato" className="cta">ENTRE EM CONTATO</a></li>
+            <li><a href="#contato" className="cta" onClick={() => setMenuOpen(false)}>ENTRE EM CONTATO</a></li>
           </ul>
         </nav>
-        <button className="menu-btn" aria-label="Menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
+        <button className="menu-btn" aria-label="Menu" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          ) : (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          )}
         </button>
       </div>
     </header>
@@ -183,13 +192,13 @@ export function Hero() {
         </div>
 
         <div className="hero-image">
-          <img fetchpriority="high" src={h.mainImage} alt="Tattoo Artist" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
+          <Image priority src={h.mainImage} alt="Tattoo Artist" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
 
           <div className="hero-cards">
             {[{src: h.card1, label: '001'}, {src: h.card2, label: '002'}, {src: h.card3, label: '003'}].map(({src, label}) => (
               <div className="h-card" key={label}>
                 <span className="h-card-num">{label}</span>
-                {src && <img loading="lazy" decoding="async" src={src} alt={label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+                {src && <Image src={src} alt={label} fill sizes="150px" style={{ objectFit: 'cover' }} />}
               </div>
             ))}
           </div>
@@ -257,16 +266,14 @@ export function Differentials() {
       <div className="container diff-grid">
         <div className="diff-image" style={{ position: 'relative', overflow: 'hidden' }}>
           {images.map((src, idx) => (
-            <img 
+            <Image 
               key={idx} 
               src={src} 
               alt="Tatuador em ação" 
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               style={{ 
-                width: '100%', 
-                height: '100%', 
                 objectFit: 'cover', 
-                position: 'absolute', 
-                inset: 0, 
                 opacity: idx === imgIdx ? 1 : 0, 
                 transition: 'opacity 1s ease-in-out' 
               }} 

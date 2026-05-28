@@ -1098,8 +1098,22 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    RESPONSIVE
    ============================================ */
 @media (max-width: 900px) {
-  .nav-links { display: none; }
-  .menu-btn { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; }
+  .nav-links { 
+    display: none; 
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 32px 24px;
+    border-bottom: 1px solid var(--border);
+    z-index: 9999;
+    gap: 24px;
+  }
+  .nav-links.open { display: flex !important; }
+  .menu-btn { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; z-index: 10000; }
   .hero-grid { flex-direction: column; min-height: auto; }
   .hero-left { flex: 1 1 auto; width: 100%; margin-left: 0; }
   .hero-image {
