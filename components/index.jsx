@@ -100,11 +100,11 @@ export function Header() {
           <Logo size={56} />
         </a>
         <nav>
-          <ul className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-            <li><a href="#sobre">SOBRE NÓS</a></li>
-            <li><a href="#tattoos">TATTOOS</a></li>
-            <li><a href="#estudio">O ESTÚDIO</a></li>
-            <li><a href="#piercing">PIERCING</a></li>
+          <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
+            <li><a href="#sobre" onClick={() => setMenuOpen(false)}>SOBRE NÓS</a></li>
+            <li><a href="#tattoos" onClick={() => setMenuOpen(false)}>TATTOOS</a></li>
+            <li><a href="#estudio" onClick={() => setMenuOpen(false)}>O ESTÚDIO</a></li>
+            <li><a href="#piercing" onClick={() => setMenuOpen(false)}>PIERCING</a></li>
             <li>
               <select 
                 value={lang}
@@ -136,15 +136,22 @@ export function Header() {
                 <option value="es" style={{ color: '#000' }}>🇪🇸 ES</option>
               </select>
             </li>
-            <li><a href="#contato" className="cta">ENTRE EM CONTATO</a></li>
+            <li><a href="#contato" className="cta" onClick={() => setMenuOpen(false)}>ENTRE EM CONTATO</a></li>
           </ul>
         </nav>
-        <button className="menu-btn" aria-label="Menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
+        <button className="menu-btn" aria-label="Menu" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          ) : (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          )}
         </button>
       </div>
     </header>
