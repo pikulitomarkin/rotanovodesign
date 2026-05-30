@@ -10,7 +10,7 @@ import {
   Reviews,
   FAQ,
   Footer,
-  WhatsAppFloat,
+  WhatsAppProtector,
   StudioSpace,
   Piercing,
   Tourists
@@ -33,6 +33,7 @@ export default function Home() {
       <Reviews />
       <FAQ />
       <Footer />
+      <WhatsAppProtector />
     </main>
   );
 }
