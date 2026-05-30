@@ -918,7 +918,7 @@ export function WhatsAppProtector() {
       try {
         window.grecaptcha.ready(async () => {
           try {
-            const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+            const siteKey = "6LcifQMtAAAAAIFPlNlJV5uy8Ypi_yCDa-RkItvi";
             const token = await window.grecaptcha.execute(siteKey, { action: 'whatsapp_click' });
             
             const res = await fetch('/api/recaptcha', {
