@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import { siteData } from '../lib/data'
-
+import ReCAPTCHA from "react-google-recaptcha"
 // ===== Logo (gothic-style RT monogram) =====
 export function Logo({ size = 56 }) {
   return (
@@ -183,7 +183,7 @@ export function Hero() {
           {h.bannerText && (
             <p style={{ color: '#fff', fontWeight: 700, fontSize: 'clamp(16px, 1.6vw, 22px)', lineHeight: 1.4, marginBottom: '28px', maxWidth: '420px' }}>{h.bannerText}</p>
           )}
-          <a href={waLink} className="btn-cta" target="_blank" rel="noopener noreferrer">
+          <a href="#" className="btn-cta" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event('open-wa-recaptcha')); }}>
             <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: '10px' }}>
               <path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.9L4 20l4.22-1.1a7.93 7.93 0 003.83.98h.01a7.94 7.94 0 005.55-13.55zm-5.54 12.2a6.58 6.58 0 01-3.36-.92l-.24-.14-2.5.65.67-2.44-.16-.25a6.6 6.6 0 0110.27-8.1 6.55 6.55 0 011.93 4.67 6.6 6.6 0 01-6.6 6.53zm3.62-4.94c-.2-.1-1.18-.58-1.36-.64-.18-.07-.31-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.6-.53-1-1.18-1.12-1.38-.11-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34l-.39-.01a.74.74 0 00-.54.25c-.18.2-.7.69-.7 1.67 0 .98.72 1.93.82 2.06.1.13 1.42 2.17 3.44 3.05.48.2.85.32 1.14.42.48.15.92.13 1.26.08.39-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.94-.05-.09-.18-.13-.38-.23z" />
             </svg>
@@ -751,7 +751,7 @@ export function FAQ() {
       <div className="container faq-grid">
         <div className="faq-head">
           <h2>Perguntas <span className="accent">Frequentes!</span></h2>
-          <a className="btn-ghost" href={waLink} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <a className="btn-ghost" href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event('open-wa-recaptcha')); }} style={{ display: 'inline-flex', alignItems: 'center' }}>
             <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: '10px' }}>
               <path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.9L4 20l4.22-1.1a7.93 7.93 0 003.83.98h.01a7.94 7.94 0 005.55-13.55zm-5.54 12.2a6.58 6.58 0 01-3.36-.92l-.24-.14-2.5.65.67-2.44-.16-.25a6.6 6.6 0 0110.27-8.1 6.55 6.55 0 011.93 4.67 6.6 6.6 0 01-6.6 6.53zm3.62-4.94c-.2-.1-1.18-.58-1.36-.64-.18-.07-.31-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.6-.53-1-1.18-1.12-1.38-.11-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34l-.39-.01a.74.74 0 00-.54.25c-.18.2-.7.69-.7 1.67 0 .98.72 1.93.82 2.06.1.13 1.42 2.17 3.44 3.05.48.2.85.32 1.14.42.48.15.92.13 1.26.08.39-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.94-.05-.09-.18-.13-.38-.23z" />
             </svg>
@@ -878,7 +878,7 @@ export function Piercing() {
             ))}
           </div>
 
-          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-cta" style={{ maxWidth: '300px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+          <a href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event('open-wa-recaptcha')); }} className="btn-cta" style={{ maxWidth: '300px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: '10px' }}>
               <path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.9L4 20l4.22-1.1a7.93 7.93 0 003.83.98h.01a7.94 7.94 0 005.55-13.55zm-5.54 12.2a6.58 6.58 0 01-3.36-.92l-.24-.14-2.5.65.67-2.44-.16-.25a6.6 6.6 0 0110.27-8.1 6.55 6.55 0 011.93 4.67 6.6 6.6 0 01-6.6 6.53zm3.62-4.94c-.2-.1-1.18-.58-1.36-.64-.18-.07-.31-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.6-.53-1-1.18-1.12-1.38-.11-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34l-.39-.01a.74.74 0 00-.54.25c-.18.2-.7.69-.7 1.67 0 .98.72 1.93.82 2.06.1.13 1.42 2.17 3.44 3.05.48.2.85.32 1.14.42.48.15.92.13 1.26.08.39-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.94-.05-.09-.18-.13-.38-.23z" />
             </svg>
@@ -899,4 +899,56 @@ export function Piercing() {
       </div>
     </section>
   )
+}
+
+// ===== WhatsApp Protector (reCAPTCHA) =====
+export function WhatsAppProtector() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const cms = siteData;
+  const waLink = `https://wa.me/${(cms.settings.whatsapp || '5521999999999').replace(/\D/g, '')}`;
+
+  React.useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('open-wa-recaptcha', handleOpen);
+    return () => window.removeEventListener('open-wa-recaptcha', handleOpen);
+  }, []);
+
+  const handleVerify = (token) => {
+    if (token) {
+      setIsOpen(false);
+      window.open(waLink, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return createPortal(
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(0,0,0,0.8)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)'
+    }}>
+      <div style={{
+        background: '#111', padding: '32px', borderRadius: '16px', border: '1px solid #333',
+        textAlign: 'center', maxWidth: '400px', width: '90%'
+      }}>
+        <h3 style={{ marginBottom: '16px', color: '#fff', fontSize: '20px' }}>Verificação de Segurança</h3>
+        <p style={{ color: '#aaa', marginBottom: '24px', fontSize: '14px', lineHeight: 1.5 }}>
+          Para evitar spam de bots no nosso WhatsApp, por favor confirme que você é humano.
+        </p>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+          <ReCAPTCHA
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"}
+            onChange={handleVerify}
+            theme="dark"
+          />
+        </div>
+        <button onClick={() => setIsOpen(false)} style={{
+          background: 'transparent', border: 'none', color: '#888', textDecoration: 'underline', cursor: 'pointer', fontSize: '14px'
+        }}>
+          Cancelar
+        </button>
+      </div>
+    </div>,
+    document.body
+  );
 }
