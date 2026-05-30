@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import { siteData } from '../lib/data'
-import ReCAPTCHA from "react-google-recaptcha"
+
 // ===== Logo (gothic-style RT monogram) =====
 export function Logo({ size = 56 }) {
   return (
@@ -901,53 +901,66 @@ export function Piercing() {
   )
 }
 
-// ===== WhatsApp Protector (reCAPTCHA) =====
+// ===== WhatsApp Protector (reCAPTCHA v3) =====
 export function WhatsAppProtector() {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const cms = siteData;
   const waLink = `https://wa.me/${(cms.settings.whatsapp || '5521999999999').replace(/\D/g, '')}`;
 
   React.useEffect(() => {
-    const handleOpen = () => setIsOpen(true);
+    const handleOpen = async () => {
+      if (typeof window.grecaptcha === 'undefined') {
+        window.open(waLink, '_blank', 'noopener,noreferrer');
+        return;
+      }
+      
+      setIsLoading(true);
+      try {
+        window.grecaptcha.ready(async () => {
+          try {
+            const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+            const token = await window.grecaptcha.execute(siteKey, { action: 'whatsapp_click' });
+            
+            const res = await fetch('/api/recaptcha', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ token })
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+              window.open(waLink, '_blank', 'noopener,noreferrer');
+            } else {
+              alert("Verificação falhou. Tente novamente.");
+            }
+          } catch (e) {
+            console.error(e);
+            window.open(waLink, '_blank', 'noopener,noreferrer');
+          } finally {
+            setIsLoading(false);
+          }
+        });
+      } catch (err) {
+        setIsLoading(false);
+        window.open(waLink, '_blank', 'noopener,noreferrer');
+      }
+    };
     window.addEventListener('open-wa-recaptcha', handleOpen);
     return () => window.removeEventListener('open-wa-recaptcha', handleOpen);
   }, []);
 
-  const handleVerify = (token) => {
-    if (token) {
-      setIsOpen(false);
-      window.open(waLink, '_blank', 'noopener,noreferrer');
-    }
-  };
-
-  if (!isOpen) return null;
+  if (!isLoading) return null;
 
   return createPortal(
     <div style={{
       position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(0,0,0,0.8)',
       display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)'
     }}>
-      <div style={{
-        background: '#111', padding: '32px', borderRadius: '16px', border: '1px solid #333',
-        textAlign: 'center', maxWidth: '400px', width: '90%'
-      }}>
-        <h3 style={{ marginBottom: '16px', color: '#fff', fontSize: '20px' }}>Verificação de Segurança</h3>
-        <p style={{ color: '#aaa', marginBottom: '24px', fontSize: '14px', lineHeight: 1.5 }}>
-          Para evitar spam de bots no nosso WhatsApp, por favor confirme que você é humano.
-        </p>
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
-          <ReCAPTCHA
-            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"}
-            onChange={handleVerify}
-            theme="dark"
-          />
-        </div>
-        <button onClick={() => setIsOpen(false)} style={{
-          background: 'transparent', border: 'none', color: '#888', textDecoration: 'underline', cursor: 'pointer', fontSize: '14px'
-        }}>
-          Cancelar
-        </button>
+      <div style={{ textAlign: 'center' }}>
+        <div style={{ width: '40px', height: '40px', border: '4px solid #333', borderTop: '4px solid var(--accent)', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 16px' }} />
+        <p style={{ color: '#fff', fontSize: '14px', fontWeight: 600 }}>Verificando conexão segura...</p>
       </div>
+      <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
     </div>,
     document.body
   );
