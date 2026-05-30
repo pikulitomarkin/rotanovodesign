@@ -27,6 +27,7 @@ export default function RootLayout({ children }) {
     <html lang="pt-BR">
       <head>
         <meta name="google-site-verification" content="" />
+        <script src="https://www.google.com/recaptcha/api.js?render=6LcifQMtAAAAAIFPlNlJV5uy8Ypi_yCDa-RkItvi" async defer></script>
       </head>
       <body className={`${inter.variable} ${archivo.variable}`}>
         <div id="google_translate_element" style={{ display: 'none' }}></div>
